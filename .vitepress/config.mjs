@@ -6,7 +6,7 @@ export default defineConfig({
   head: [['link', { rel: 'icon', href: '/asset/favicon.ico' }]],
   title: "Jcc_Document",
   description: "A site about SWTC chain's jcc_document for developer",
-  cleanUrls: true,
+  // cleanUrls: false,
   srcDir: './src',
   base: '/documents/',
   lastUpdated: true,
