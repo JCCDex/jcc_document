@@ -8,6 +8,7 @@ export default defineConfig({
   description: "A site about SWTC chain's jcc_document for developer",
   cleanUrls: true,
   srcDir: './src',
+  // base: '/documents/',
   lastUpdated: true,
   themeConfig: {
     nav: [
