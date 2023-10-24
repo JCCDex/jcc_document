@@ -8,8 +8,8 @@ hero:
   tagline: "Do best for world"
   actions:
     - theme: brand
-      text: SWTC Official Website
-      link: http://swtc.top
+      text: Official Website
+      link: https://jccdex.cn
     - theme: alt
       text: GitHub
       link: https://github.com/JCCDex/jcc_document
@@ -22,4 +22,3 @@ features:
   - title: Jcc-jingtum-lib
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-
