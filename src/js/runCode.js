@@ -8,6 +8,9 @@ export function execute_javascript(event, tid) {
 		const
 			_log = function (s) {
 				print.log(s);
+        if(Object.prototype.toString.call(s) === '[object Object]') {
+          s = JSON.stringify(s)
+        }
 				buffer = buffer + s + '\n';
 			},
 			_warn = function (s) {
@@ -67,7 +70,8 @@ export function showEdit(tid) {
   let parent = code.parentNode;
   parent.insertBefore(editArea,code);
   const editEle = code.nextElementSibling.querySelector('.code_edit')
-  editEle.parentNode.removeChild(editEle)
+  editEle.style.opacity = 0;
+  // editEle.parentNode.removeChild(editEle)
   parent.removeChild(code)
 }
 

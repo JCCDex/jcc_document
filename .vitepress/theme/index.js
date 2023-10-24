@@ -3,6 +3,7 @@ import { h } from 'vue'
 import Theme from 'vitepress/theme'
 import runCode from '../../src/components/runCode.vue'
 import './style.css'
+import '../../src/asset/common.css'
 export default {
   extends: Theme,
   Layout: () => {

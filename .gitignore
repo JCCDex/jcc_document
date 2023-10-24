@@ -1,8 +1,5 @@
 .vitepress/dist
 .vitepress/cache
 node_modules
-<<<<<<< HEAD
 .vscode
-=======
 deploy.sh
->>>>>>> f58523d1842fac1e5c284c03f392071be79174b8

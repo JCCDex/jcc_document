@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Jcc_Document"
   text: "SWTC Chain \nDeveloper"
-  tagline: "Do best for world"
+  tagline: "Do best to world"
   actions:
     - theme: brand
       text: Official Website
@@ -13,12 +13,21 @@ hero:
     - theme: alt
       text: GitHub
       link: https://github.com/JCCDex/jcc_document
+  image:
+    src: /homeBg.webp
+    alt: VitePress
 
 features:
-  - title: Jingtum-lib
+  - icon: 
+      src: /features_icon1.svg
+    title: Jingtum-lib
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Jcc-wallet
+  - icon:
+      src: /features_icon2.svg
+    title: Jcc-wallet
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Jcc-jingtum-lib
+  - icon:
+      src: /features_icon3.svg
+    title: Jcc-jingtum-lib
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---

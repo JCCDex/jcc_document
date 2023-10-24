@@ -3,13 +3,9 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: 'zh-CN',
-  head: [['link', { rel: 'icon', href: '/favicon.ico' }]],
+  head: [['link', { rel: 'icon', href: '/documents/favicon.ico' }]],
   title: "Jcc_Document",
   description: "A site about SWTC chain's jcc_document for developer",
-<<<<<<< HEAD
-=======
-  // cleanUrls: false,
->>>>>>> f58523d1842fac1e5c284c03f392071be79174b8
   srcDir: './src',
   base: '/documents/',
   lastUpdated: true,
