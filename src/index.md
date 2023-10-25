@@ -14,7 +14,7 @@ hero:
       text: GitHub
       link: https://github.com/JCCDex/jcc_document
   image:
-    src: /homeBg.webp
+    src: /homeBg.png
     alt: VitePress
 
 features:

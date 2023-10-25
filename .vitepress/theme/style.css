@@ -173,8 +173,8 @@
 }
 
 .VPButton.medium.brand {
-  /* background-color: rgb(161, 181, 255); */
-  background-color: rgb(92, 108, 237) ;
+  background-color: rgb(161, 181, 255);
+  /* background-color: rgb(92, 108, 237) ; */
 }
 
 .dark .VPButton.brand {
@@ -184,7 +184,11 @@
 .dark .VPButton.alt {
   background-color: rgb(50, 54, 63);
 }
-
+.dark .VPButton.alt:hover {
+  border-color: var(--vp-button-alt-hover-border);
+  color: #000;
+  background-color: #fff;
+}
 .image-src {
   margin-top: 23px;
 }

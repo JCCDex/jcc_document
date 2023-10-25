@@ -12,6 +12,10 @@ export function execute_javascript(event, tid) {
           s = JSON.stringify(s)
         }
 				buffer = buffer + s + '\n';
+        if(buffer.includes('(no output)')) {
+          buffer = buffer.slice(11)
+        }
+        _showCodeResult(event, buffer)
 			},
 			_warn = function (s) {
 				print.warn(s);
@@ -48,7 +52,6 @@ export function execute_javascript(event, tid) {
         ${code}
       })
       `)()()
-
 			if (!buffer) {
 				buffer = '(no output)';
 			}

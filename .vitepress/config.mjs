@@ -26,10 +26,13 @@ export default defineConfig({
         items: jccLib()
       }
     },
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/JCCDex/jcc_document' }
-    ]
+    ],
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2019-present'
+    },
   },
   vite: {
     plugins: [
