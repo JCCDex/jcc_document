@@ -33,6 +33,35 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2019-present'
     },
+    search: {
+      provider: 'local',
+      options: {
+        detailedView: true, //搜索结果默认展示细节
+        disableQueryPersistence: true, //取消搜索词持久化
+        translations: {
+          button: {
+            buttonText: '搜索文档',
+            buttonAriaLabel: '搜索文档'
+          },
+          modal: {
+            noResultsText: '无法找到相关结果',
+            resetButtonTitle: '清除查询条件',
+            footer: {
+              selectText: '选择',
+              navigateText: '切换',
+              closeText: '关闭'
+            }
+          }
+        },
+        'local-search-detailed-list': true,
+      }
+    },
+    lastUpdatedText: '最后更新',
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    },
+    outlineTitle: '本页内容'
   },
   vite: {
     plugins: [
@@ -43,7 +72,7 @@ export default defineConfig({
           global: true,
           process: true,
         }
-      }),
+      })
     ],
   }
 })
