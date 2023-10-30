@@ -1,4 +1,4 @@
-import {jlib, jccWallet, jccLib} from '../js/jingtum.js'
+import {jlib, jccWallet, jccLib} from './jingtum.js'
 let print = window.console
 
 export function execute_javascript(event, tid) {

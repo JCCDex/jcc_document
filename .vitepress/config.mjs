@@ -81,7 +81,7 @@ function nav() {
   return [
     { text: '首页', link: '/' },
     { text: 'Jingtum_lib', link: '/jingtum_lib/',activeMatch: '/jingtum_lib/' },
-    { text: 'Jcc_wallet', link: '/jcc_wallet/', activeMatch: '/jcc_wallet/' },
+    { text: 'Jcc_wallet', link: '/jcc_wallet/introduction', activeMatch: '/jcc_wallet/' },
     { text: 'Jcc_jingtum_lib', link: '/jcc_jingtum_lib/', activeMatch: '/jcc_jingtum_lib/' },
   ]
 }
@@ -122,7 +122,16 @@ function jtLib() {
 }
 
 function jccWallet() {
-
+  return [
+    {
+      text: '介绍',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'introduction'},
+        { text: '初始化钱包', link: 'initWallet'},
+      ]
+    }
+  ]
 }
 
 function jccLib() {
