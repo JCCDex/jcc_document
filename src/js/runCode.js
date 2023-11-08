@@ -34,6 +34,33 @@ export function execute_javascript(event, tid) {
 				error: _error
 			};
       window.console = _console
+      window.testKeyStore = {
+        version: "1.0",
+        id: "4085118690b6b24a58e8b9a2e26a15a31f2dfbd9e6280752a04af70e3a5389cc",
+        contact: {},
+        wallets: [
+          {
+            ciphertext: "29cdfe6d2b2b7bbcbfea5b6d5c165043cc84b086b65aba4386841e4484",
+            mac: "2f23bf8bcb2253d79169a74594a186323fef94b0c42d4d071db119962528d7b6",
+            crypto: {
+              iv: "3086c27f1997601b3c43d34954dca2ed",
+              cipher: "aes-128-ctr",
+              kdf: "scrypt",
+              kdfparams: {
+                dklen: 32,
+                salt: "555cd56e274acb61623c28be6ab72f421675d6480ca4a1b6aa8da765fcd79edb",
+                n: 4096,
+                r: 8,
+                p: 1
+              }
+            },
+            type: "swt",
+            address: "jpgWGpfHz8GxqUjz5nb6ej8eZJQtiF6KhH",
+            default: true,
+            alias: "默认钱包"
+          }
+        ]
+      }
       window.require = (name) => {
         if(name === 'jingtum-lib') {
           return jlib
@@ -45,22 +72,25 @@ export function execute_javascript(event, tid) {
           throw Error(`Cannot find module ${name}`)
         }
       }
-		try {
+		// try {
       new Function(`
-      return (function()
+      return (async function()
       {
         ${code}
       })
-      `)()()
+      `)()().catch((err) => {
+        buffer = buffer + String(err);
+        _showCodeResult(event, buffer, false)
+      })
 			if (!buffer) {
 				buffer = '(no output)';
 			}
       _showCodeResult(event, buffer)
-		}
-		catch (error) {
-			buffer = buffer + String(error);
-      _showCodeResult(event, buffer, false)
-		}
+		// }
+		// catch (error) {
+		// 	buffer = buffer + String(error);
+    //   _showCodeResult(event, buffer, false)
+		// }
 	})();
 }
 

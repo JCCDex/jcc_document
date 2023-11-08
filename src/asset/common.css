@@ -166,10 +166,24 @@ a {
 .dark .code_edit {
   border: 1px solid rgb(46, 46, 50);
   background-color: var(--vp-code-block-bg);
-  color: rgb(169, 179, 253);
+  color: #fff;
 }
 
 .dark .code_copy:hover,
 .dark .code_edit:hover {
   background-color: rgba(60, 60, 67, .3);
+}
+
+textarea:focus {
+  border-color: #99baca;
+  outline: 0;
+  background: #f5fbfe;
+  color: #444;
+}
+
+.dark textarea:focus {
+  border-color: #99baca;
+  outline: 0;
+  background: rgba(120, 179, 243,.1);
+  color: #fff;
 }

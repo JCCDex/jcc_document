@@ -8,6 +8,20 @@ outline: deep
 
 jcc_wallet目前支持jingtum, moac, ethereum, stm, call以及bizain钱包的创建和校验
 
+## 钱包对象
+
+- `jtWallet`
+- `bvcadtWallet`
+- `rippleWallet`
+- `stmWallet`
+- `callWallet`
+- `moacWallet`
+- `ethWallet`
+
+```js
+const { jtWallet, bvcadtWallet, rippleWallet, stmWallet, callWallet, moacWallet ,ethWallet} = require('jcc_wallet')
+```
+
 ## createWallet
 
 创建对应链上的钱包
@@ -18,10 +32,7 @@ jcc_wallet目前支持jingtum, moac, ethereum, stm, call以及bizain钱包的创
  *
  * @returns {IWalletModel}
  */
-interface IWalletModel {
-  address: string;
-  secret: string;
-}
+function createWallet(opt: ICreateOptionsModel = {}): IWalletModel | null
 ```
 
 :::details {{$frontmatter.checkCode}}
@@ -61,6 +72,7 @@ console.log(eth)
  * @param {string} address
  * @returns {boolean} return true if valid
  */
+function isValidAddress(address: string): boolean
 ```
 
 :::details {{$frontmatter.checkCode}}
@@ -96,6 +108,7 @@ console.log(validEth)
  * @param {string} secret
  * @returns {boolean} return true if valid
  */
+function isValidSecret(secret: string): boolean
 ```
 
 :::details {{$frontmatter.checkCode}}
@@ -131,12 +144,13 @@ console.log(validEth)
  * @param {string} secret
  * @returns {(string | null)} return address if valid, otherwise return null
  */
+function getAddress(secret: string): string | null
 ```
 
 :::details {{$frontmatter.checkCode}}
 
 <pre class="code no_drop" id="code_getAddress">
-const { jtWallet, ethWallet } = require('jcc_wallet')
+const { jtWallet } = require('jcc_wallet')
 
 const { secret, address }  = jtWallet.createWallet()
 
@@ -150,3 +164,19 @@ console.log(`getAddress: ${validAddress}`)
 <runCode tid="code_getAddress" />
 
 :::
+
+## decryptKeystore
+
+**仅支持Ethereum KeyStore File**
+
+```ts
+/**
+ * decrypt ethereum keystore file with ethereum password
+ *
+ * @param {string} password
+ * @param {*} encryptData
+ * @returns {string} return secret if success, otherwise throws `keystore is invalid` if the keystore is invalid or
+ * throws `ethereum password is wrong` if the password is wrong
+ */
+const decryptKeystore = (password: string, encryptData: any): string
+```

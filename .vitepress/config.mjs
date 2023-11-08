@@ -130,6 +130,26 @@ function jccWallet() {
         { text: '入门', link: 'introduction'},
         { text: '初始化钱包', link: 'initWallet'},
       ]
+    },
+    {
+      text: 'JingchangWallet',
+      collapsed: false,
+      items: [
+        { text: '开始', link: 'initJingchang'},
+        { text: '如何使用', link: 'jingchangWallet'},
+      ]
+    },
+    {
+      text: 'HDWallet',
+      collapsed: false,
+      items: [
+        { text: '开始', link: 'initHD'},
+        { text: '如何使用', link: 'HDWallet'},
+      ]
+    },
+    {
+      text: 'TS类型',
+      link: '/type'
     }
   ]
 }
