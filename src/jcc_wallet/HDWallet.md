@@ -31,6 +31,11 @@ HDWallet类
  */
 constructor(opt: any)
 ```
+本节测试用例：
+
+助记词：soccer want seat goddess phone awake peasant high correct robot believe door
+
+密钥：snZeokZMVSEynpKCt7Zvk5pkFZAHt
 
 ## 生成助记词
 
@@ -59,8 +64,9 @@ console.log(mnemonic)
 :::
 
 ## 从助记词得到密钥
-<!-- soccer want seat goddess phone awake peasant high correct robot believe door -->
-<!-- snZeokZMVSEynpKCt7Zvk5pkFZAHt -->
+
+<img src="../asset/secret.png" alt="secret" style="zoom:33%;">
+
 ```ts
 /**
  * get secret from mnemonic, obey encode rule base58 for jingtum

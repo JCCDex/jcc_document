@@ -132,7 +132,7 @@ function jccWallet() {
       ]
     },
     {
-      text: 'JingchangWallet',
+      text: 'Jingchang Wallet',
       collapsed: false,
       items: [
         { text: '开始', link: 'initJingchang'},
@@ -140,7 +140,7 @@ function jccWallet() {
       ]
     },
     {
-      text: 'HDWallet',
+      text: 'HD Wallet',
       collapsed: false,
       items: [
         { text: '开始', link: 'initHD'},
