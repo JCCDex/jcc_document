@@ -56,3 +56,10 @@ BIP44的五级路径结构分别代表了以下含义：
 2.使用密钥拉伸（Key stretching）函数，从助记词推导出种子(Seed)
 
 **密钥拉伸函数需要两个参数：助记词和盐。盐可以提高暴力破解的难度。 盐由常量字符串 "mnemonic" 及一个可选的密码组成，注意使用不同密码，则拉伸函数在使用同一个助记词的情况下会产生一个不同的种子** -->
+
+## 测试用例
+
+| 测试用例 |  |
+| :----| :---- |
+|助记词|soccer want seat goddess phone awake peasant high correct robot believe door|
+|密钥|snZeokZMVSEynpKCt7Zvk5pkFZAHt|

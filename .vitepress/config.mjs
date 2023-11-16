@@ -22,7 +22,7 @@ export default defineConfig({
         items: jccWallet()
       },
       '/jcc_jingtum_lib/': {
-        base: 'jcc_jingtum_lib',
+        base: '/jcc_jingtum_lib/',
         items: jccLib()
       }
     },
@@ -82,7 +82,7 @@ function nav() {
     { text: '首页', link: '/' },
     { text: 'Jingtum_lib', link: '/jingtum_lib/',activeMatch: '/jingtum_lib/' },
     { text: 'Jcc_wallet', link: '/jcc_wallet/introduction', activeMatch: '/jcc_wallet/' },
-    { text: 'Jcc_jingtum_lib', link: '/jcc_jingtum_lib/', activeMatch: '/jcc_jingtum_lib/' },
+    { text: 'Jcc_jingtum_lib', link: '/jcc_jingtum_lib/introduction', activeMatch: '/jcc_jingtum_lib/' },
   ]
 }
 
@@ -155,5 +155,33 @@ function jccWallet() {
 }
 
 function jccLib() {
-  
+  return [
+    {
+      text: '介绍',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'introduction'},
+        // { text: '初始化钱包', link: 'initWallet'},
+      ]
+    },
+    {
+      text: 'Wallet',
+      collapsed: false,
+      items: [
+        { text: '如何使用', link: 'wallet'},
+      ]
+    },
+    {
+      text: 'Transaction',
+      collapsed: false,
+      items: [
+        { text: '如何使用', link: 'transaction'},
+        { text: '构造tx', link: 'tx'}
+      ]
+    },
+    {
+      text: 'TS类型',
+      link: '/type'
+    }
+  ]
 }

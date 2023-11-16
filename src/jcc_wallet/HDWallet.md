@@ -31,11 +31,6 @@ HDWallet类
  */
 constructor(opt: any)
 ```
-本节测试用例：
-
-助记词：soccer want seat goddess phone awake peasant high correct robot believe door
-
-密钥：snZeokZMVSEynpKCt7Zvk5pkFZAHt
 
 ## 生成助记词
 

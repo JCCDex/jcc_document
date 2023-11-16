@@ -172,6 +172,10 @@
   color: #fff;
 }
 
+.VPHome {
+  padding-bottom: 50px !important;
+}
+
 .VPButton.medium.brand {
   background-color: rgb(161, 181, 255);
   /* background-color: rgb(92, 108, 237) ; */
