@@ -4,8 +4,8 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 export default defineConfig({
   lang: 'zh-CN',
   head: [['link', { rel: 'icon', href: '/documents/favicon.ico' }]],
-  title: "Jcc_Document",
-  description: "A site about SWTC chain's jcc_document for developer",
+  title: "井畅开发文档",
+  description: "SWTC 链相关开发文档",
   srcDir: './src',
   base: '/documents/',
   lastUpdated: true,
@@ -80,9 +80,9 @@ export default defineConfig({
 function nav() {
   return [
     { text: '首页', link: '/' },
-    { text: 'Jingtum_lib', link: '/jingtum_lib/',activeMatch: '/jingtum_lib/' },
-    { text: 'Jcc_wallet', link: '/jcc_wallet/introduction', activeMatch: '/jcc_wallet/' },
-    { text: 'Jcc_jingtum_lib', link: '/jcc_jingtum_lib/introduction', activeMatch: '/jcc_jingtum_lib/' },
+    { text: 'jingtum_lib', link: '/jingtum_lib/',activeMatch: '/jingtum_lib/' },
+    { text: 'jcc_wallet', link: '/jcc_wallet/introduction', activeMatch: '/jcc_wallet/' },
+    { text: 'jcc_jingtum_lib', link: '/jcc_jingtum_lib/introduction', activeMatch: '/jcc_jingtum_lib/' },
   ]
 }
 

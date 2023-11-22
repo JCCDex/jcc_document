@@ -1,6 +1,6 @@
 # 入门
 
-Jcc_wallet
+jcc_wallet
 
 ## 说明
 

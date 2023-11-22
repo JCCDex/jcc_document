@@ -3,12 +3,12 @@
 layout: home
 
 hero:
-  name: "Jcc_Document"
+  name: "井畅开发文档"
   text: "SWTC Chain \nDeveloper"
   tagline: "Do best to world"
   actions:
     - theme: brand
-      text: Official Website
+      text: 井畅官网
       link: https://jccdex.cn
     - theme: alt
       text: GitHub
@@ -20,14 +20,14 @@ hero:
 features:
   - icon: 
       src: /features_icon1.svg
-    title: Jingtum-lib
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    title: jingtum-lib
+    details: 井通官方开发库
   - icon:
       src: /features_icon2.svg
-    title: Jcc-wallet
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    title: jcc-wallet
+    details: 井畅多链多钱包开发库,支持BIP39 BIP44钱包标准,支持ETH类, SWTC, XRP, EOS, TRON多链
   - icon:
       src: /features_icon3.svg
-    title: Jcc-jingtum-lib
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    title: jcc-jingtum-lib
+    details: 井畅基于swtclib的包装开发包，简化了应用层使用
 ---
