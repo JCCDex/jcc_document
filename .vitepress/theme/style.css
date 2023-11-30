@@ -159,12 +159,12 @@
 
 .VPHero.VPHomeHero {
   background: linear-gradient(90deg, rgba(127, 146, 243, 1) 0%, rgba(82, 128, 255, 1) 100%);
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .dark .VPHero.VPHomeHero {
   background: var(--vp-nav-bg-color);;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .VPHomeHero .text,

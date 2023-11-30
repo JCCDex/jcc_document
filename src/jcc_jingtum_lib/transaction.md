@@ -1,5 +1,4 @@
 ---
-# title: remote
 # editLink: true
 checkCode: '点我运行代码'
 outline: deep
@@ -174,7 +173,7 @@ console.log(accountTx)
 <runCode tid="code_requestAccountTx" />
 :::
 
-### 发送交易(无需密钥)
+### 发送交易(blob)
 
 ```ts
 static function sendRawTransaction(data: { blob: string; url: string }): Promise<string>

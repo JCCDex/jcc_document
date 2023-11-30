@@ -24,7 +24,16 @@ export default defineConfig({
       '/jcc_jingtum_lib/': {
         base: '/jcc_jingtum_lib/',
         items: jccLib()
+      },
+      '/jcc_wallet_java/': {
+        base: '/jcc_wallet_java/',
+        items: jccWalletJava()
+      },
+      '/jcc_jingtum_lib_java/': {
+        base: '/jcc_jingtum_lib_java/',
+        items: jccLibJava()
       }
+
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/JCCDex/jcc_document' }
@@ -56,7 +65,7 @@ export default defineConfig({
         'local-search-detailed-list': true,
       }
     },
-    lastUpdatedText: '最后更新',
+    lastUpdatedText: '最后更新时间',
     docFooter: {
       prev: '上一篇',
       next: '下一篇'
@@ -81,8 +90,16 @@ function nav() {
   return [
     { text: '首页', link: '/' },
     { text: 'jingtum_lib', link: '/jingtum_lib/',activeMatch: '/jingtum_lib/' },
-    { text: 'jcc_wallet', link: '/jcc_wallet/introduction', activeMatch: '/jcc_wallet/' },
-    { text: 'jcc_jingtum_lib', link: '/jcc_jingtum_lib/introduction', activeMatch: '/jcc_jingtum_lib/' },
+    { text: 'jcc_wallet', items: [
+        { text: 'jcc_wallet (js)', link: '/jcc_wallet/introduction' },
+        { text: 'jcc_wallet (java)', link: '/jcc_wallet_java/introduction' },
+      ] 
+    },
+    { text: 'jcc_jingtum_lib', items: [
+        { text: 'jcc_jingtum_lib (js)', link: '/jcc_jingtum_lib/introduction' },
+        { text: 'jcc_jingtum_lib (java)', link: '/jcc_jingtum_lib_java/introduction' },
+      ] 
+    },
   ]
 }
 
@@ -132,19 +149,19 @@ function jccWallet() {
       ]
     },
     {
-      text: 'Jingchang Wallet',
-      collapsed: false,
-      items: [
-        { text: '开始', link: 'initJingchang'},
-        { text: '如何使用', link: 'jingchangWallet'},
-      ]
-    },
-    {
       text: 'HD Wallet',
       collapsed: false,
       items: [
         { text: '开始', link: 'initHD'},
         { text: '如何使用', link: 'HDWallet'},
+      ]
+    },
+    {
+      text: 'Jingchang Wallet',
+      collapsed: false,
+      items: [
+        { text: '开始', link: 'initJingchang'},
+        { text: '如何使用', link: 'jingchangWallet'},
       ]
     },
     {
@@ -182,6 +199,43 @@ function jccLib() {
     {
       text: 'TS类型',
       link: '/type'
+    }
+  ]
+}
+
+function jccWalletJava() {
+  return [
+    {
+      text: '介绍',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'introduction'},
+        // { text: '初始化钱包', link: 'initWallet'},
+      ]
+    },{
+      text: 'Wallet',
+      link: '/wallet'
+    },{
+      text: 'WalletSM',
+      link: '/walletsm'
+    }
+  ]
+}
+
+function jccLibJava() {
+  return [
+    {
+      text: '介绍',
+      collapsed: false,
+      items: [
+        { text: '入门', link: 'introduction'},
+      ]
+    },{
+      text: 'Builder',
+      link: '/builder'
+    },{
+      text: 'JccJingtum',
+      link: '/jingtum'
     }
   ]
 }

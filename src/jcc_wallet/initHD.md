@@ -44,7 +44,7 @@ BIP44的五级路径结构分别代表了以下含义：
 - 第一层：用于表示不同的用途(purpose)，目前固定为44，表示遵循BIP44标准。
 - 第二层：用于表示不同的币种类型(coin type)，使用一个数字来标识，比如0表示比特币，1表示莱特币，60表示以太坊等。
   
-   完整的币种列表地址：https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+   完整的币种列表地址：<https://github.com/satoshilabs/slips/blob/master/slip-0044.md>
 - 第三层：用于表示不同的账户(account)，代表这个币的账户索引，从0开始。每个账户可以有自己的余额和地址。用户可以根据自己的需要创建多个账户，比如用于区分个人和商业用途等。
 - 第四层：用于表示不同的地址类型(change)，目前有两种类型，分别是0表示外部地址(external address)，1表示内部地址(internal address)。外部地址是用于接收转入的资金，内部地址是用于找零或者转移资金等。
 - 第五层：这就是地址索引(address_index)，从0开始，代表生成第几个地址，官方建议，每个account下的address_index不要超过20。
@@ -63,3 +63,7 @@ BIP44的五级路径结构分别代表了以下含义：
 | :----| :---- |
 |助记词|soccer want seat goddess phone awake peasant high correct robot believe door|
 |密钥|snZeokZMVSEynpKCt7Zvk5pkFZAHt|
+
+## 支持
+
+jcc_wallet开发包中HD钱包当前所支持的链有`ETH类`、`SWTC`、`XRP`、`EOS`、`TRON`
