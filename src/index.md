@@ -23,7 +23,7 @@ features:
     details: 井畅多链多钱包开发库,支持BIP39 BIP44钱包标准,支持ETH类, SWTC, XRP, EOS, TRON多链
     link: /jcc_wallet/introduction.html
   - icon:
-      src: /features_icon2.svg
+      src: /features_icon2_java.png
     title: jcc-wallet(java)
     details: 井畅多链多钱包开发库,仅支持SWTC链
     link: /jcc_wallet_java/introduction.html
@@ -33,7 +33,7 @@ features:
     details: 井畅基于swtclib的包装开发包，简化了应用层使用
     link: /jcc_jingtum_lib/introduction.html
   - icon:
-      src: /features_icon3.svg
+      src: /features_icon3_java.png
     title: jcc-jingtum-lib(java)
     details: 井畅基于swtclib的包装开发包，简化了应用层使用
     link: /jcc_jingtum_lib_java/introduction.html
