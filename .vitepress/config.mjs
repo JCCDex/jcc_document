@@ -152,16 +152,20 @@ function jccWallet() {
       text: 'HD Wallet',
       collapsed: false,
       items: [
-        { text: '开始', link: 'initHD'},
-        { text: '如何使用', link: 'HDWallet'},
+        { text: '开始', link: 'HDWallet/startHD'},
+        { text: '初始化HD钱包', link: 'HDWallet/initHD'},
+        { text: 'HDWallet实例', link: 'HDWallet/instanceHD'},
       ]
     },
     {
       text: 'Jingchang Wallet',
       collapsed: false,
       items: [
-        { text: '开始', link: 'initJingchang'},
-        { text: '如何使用', link: 'jingchangWallet'},
+        { text: '开始', link: 'JingchangWallet/start'},
+        { text: '初始化', link: 'JingchangWallet/init'},
+        { text: '浏览器缓存', link: 'JingchangWallet/broswer'},
+        { text: '钱包管理', link: 'JingchangWallet/management'},
+        { text: '工具函数', link: 'JingchangWallet/tool'},
       ]
     },
     {
@@ -192,8 +196,13 @@ function jccLib() {
       text: 'Transaction',
       collapsed: false,
       items: [
-        { text: '如何使用', link: 'transaction'},
-        { text: '构造tx', link: 'tx'}
+        { text: '构造函数', link: 'Transaction/constructor'},
+        { text: '账号管理', link: 'Transaction/account'},
+        { text: '交易相关', link: 'Transaction/transaction'},
+        { text: 'ERC20（Token）', link: 'Transaction/erc20'},
+        { text: 'ERC721（NFT）', link: 'Transaction/erc721'},
+        { text: '多签名', link: 'Transaction/multisign'},
+        { text: '构造tx', link: 'Transaction/tx'}
       ]
     },
     {
@@ -213,10 +222,10 @@ function jccWalletJava() {
         // { text: '初始化钱包', link: 'initWallet'},
       ]
     },{
-      text: 'Wallet',
+      text: 'Wallet（非国密）',
       link: '/wallet'
     },{
-      text: 'WalletSM',
+      text: 'WalletSM（国密）',
       link: '/walletsm'
     }
   ]
@@ -232,10 +241,23 @@ function jccLibJava() {
       ]
     },{
       text: 'Builder',
-      link: '/builder'
+      collapsed: false,
+      items: [
+        { text: 'JccJingtum.Builder', link: '/builder'},
+      ]
+      
     },{
       text: 'JccJingtum',
-      link: '/jingtum'
+      collapsed: false,
+      items: [
+        { text: '实例化', link: 'JccJingtum/jingtum'},
+        { text: '基础信息', link: 'JccJingtum/basic'},
+        { text: '账号管理', link: 'JccJingtum/account'},
+        { text: '交易相关', link: 'JccJingtum/transaction'},
+        { text: '节点相关', link: 'JccJingtum/rpcHost'},
+        { text: '工具方法', link: 'JccJingtum/tool'},
+      ]
+      
     }
   ]
 }
