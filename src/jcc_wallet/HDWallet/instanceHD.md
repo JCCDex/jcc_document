@@ -162,7 +162,7 @@ console.log(testResult2)
 <runCode tid="code_verify" />
 :::
 
-## 通过签名信息恢复地址/账户
+## 通过签名信息推理出地址/账户
 
 **注：该方法不支持swtc链**
 

@@ -42,7 +42,7 @@ public function removeBlackList(
 ): Promise<string>
 ```
 
-## set brokerage (管理员)
+## 设置平台手续费 (管理员)
 
 ```ts
 /**

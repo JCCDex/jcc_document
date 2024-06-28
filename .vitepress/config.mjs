@@ -8,7 +8,7 @@ export default defineConfig({
   description: "SWTC 链相关开发文档",
   srcDir: './src',
   base: '/documents/',
-  lastUpdated: true,
+  // lastUpdated: true,
   appearance: true,
   themeConfig: {
     nav: nav(),
@@ -32,7 +32,11 @@ export default defineConfig({
       '/jcc_jingtum_lib_java/': {
         base: '/jcc_jingtum_lib_java/',
         items: jccLibJava()
-      }
+      },
+      '/jcc_cloud/': {
+        base: '/jcc_cloud/',
+        items: jcc_cloud()
+      },
 
     },
     socialLinks: [
@@ -100,6 +104,10 @@ function nav() {
         { text: 'jcc_jingtum_lib (java)', link: '/jcc_jingtum_lib_java/introduction' },
       ] 
     },
+    { text: 'jcc_cloud', items: [
+        { text: '浏览器服务', link: '/jcc_cloud/explorer/introduction' },
+      ] 
+    },
   ]
 }
 
@@ -153,8 +161,47 @@ function jccWallet() {
       collapsed: false,
       items: [
         { text: '开始', link: 'HDWallet/startHD'},
-        { text: '初始化HD钱包', link: 'HDWallet/initHD'},
-        { text: 'HDWallet实例', link: 'HDWallet/instanceHD'},
+        { 
+          text: '初始化', 
+          base: '/jcc_wallet/HDWallet/initHD',
+          // link: '#',
+          collapsed: true,
+          items: [
+            { text: '构造函数',link: '#构造函数'},
+            { text: '生成助记词',link: '#生成助记词'},
+            { text: '从助记词得到密钥',link: '#从助记词得到密钥'},
+            { text: '从密钥得到助记词',link: '#从密钥得到助记词'},
+            { text: '密钥派生出密钥对',link: '#密钥派生出密钥对'},
+            { text: '派生HD密钥对',link: '#派生hd密钥对'},
+            { text: '创建HD钱包对象实例',link: '#创建hd钱包对象实例'},
+            { text: '通过根密钥创建HD钱包对象实例',link: '#通过根密钥创建hd钱包对象实例'},
+            { text: '通过助记词创建HD钱包对象实例',link: '#通过助记词创建hd钱包对象实例'},
+            { text: '通过密钥对创建HD钱包对象实例',link: '#通过密钥对创建hd钱包对象实例'},
+          ]
+        },
+        { 
+          text: 'HDWallet实例', 
+          base: '/jcc_wallet/HDWallet/instanceHD',
+          collapsed: true,
+          items: [
+            { text: '判断HD钱包是否是root',link: '#判断hd钱包是否是root'},
+            { text: '派生钱包',link: '#派生钱包'},
+            { text: '对内容进行hash',link: '#对内容进行hash'},
+            { text: '对内容进行签名',link: '#对内容进行签名'},
+            { text: '校验签名是否有效',link: '#校验签名是否有效'},
+            { text: '通过签名信息恢复地址/账户',link: '#通过签名信息推理出地址-账户'},
+            { text: '获取链api',link: '#获取链api'},
+            { text: '返回钱包密钥',link: '#返回钱包密钥'},
+            { text: '返回钱包助记词',link: '#返回钱包助记词'},
+            { text: '返回钱包所在链',link: '#返回钱包所在链'},
+            { text: '返回钱包地址',link: '#返回钱包地址'},
+            { text: '返回钱包密钥对',link: '#返回钱包密钥对'},
+            { text: '返回钱包路径',link: '#返回钱包路径'},
+            { text: '设置密钥对',link: '#设置密钥对'},
+            { text: '校验地址是否有效',link: '#校验地址是否有效'},
+            { text: '校验密钥是中否有效',link: '#校验密钥是中否有效'},
+          ]
+        },
       ]
     },
     {
@@ -162,10 +209,55 @@ function jccWallet() {
       collapsed: false,
       items: [
         { text: '开始', link: 'JingchangWallet/start'},
-        { text: '初始化', link: 'JingchangWallet/init'},
+        { 
+          text: '初始化', 
+          base: '/jcc_wallet/JingchangWallet/init',
+          collapsed: true,
+          // link: 'JingchangWallet/init'
+          items: [
+            { text: '构造函数',link: '#构造函数'},
+            { text: '生成keystore',link: '#生成keystore'},
+            { text: '校验Keystore',link: '#校验keystore'},
+          ]
+        },
         { text: '浏览器缓存', link: 'JingchangWallet/broswer'},
-        { text: '钱包管理', link: 'JingchangWallet/management'},
-        { text: '工具函数', link: 'JingchangWallet/tool'},
+        { 
+          text: '钱包管理', 
+          base: '/jcc_wallet/JingchangWallet/management',
+          collapsed: true,
+          // link: 'JingchangWallet/management'
+          items: [
+            { text: 'getwalletwithtype',link: '#getwalletwithtype'},
+            { text: 'getwalletwithaddress',link: '#getwalletwithaddress'},
+            { text: 'getsecretwithtype',link: '#getsecretwithtype'},
+            { text: 'getsecretwithaddress',link: '#getsecretwithaddress'},
+            { text: 'changewholepassword',link: '#changewholepassword'},
+            { text: 'changePasswordWithAddress',link: '#changePasswordWithAddress'},
+            { text: 'replacekeystore',link: '#replacekeystore'},
+            { text: 'removewalletwithtype',link: '#removewalletwithtype'},
+            { text: 'removewalletwithaddress',link: '#removewalletwithaddress'},
+            { text: 'setDefaultWallet',link: '#setDefaultWallet'},
+            { text: 'importSecret',link: '#importSecret'},
+          ]
+        },
+        { 
+          text: '工具函数', 
+          base: '/jcc_wallet/JingchangWallet/tool',
+          collapsed: true,
+          // link: 'JingchangWallet/tool'
+          items: [
+            { text: 'getwallets',link: '#getwallets'},
+            { text: 'getaddress',link: '#getaddress'},
+            { text: 'derivekeypair',link: '#derivekeypair'},
+            { text: 'encryptwithpublickey',link: '#encryptwithpublickey'},
+            { text: 'decryptwithprivatekey',link: '#decryptwithprivatekey'},
+            { text: 'setjingchangwallet',link: '#setjingchangwallet'},
+            { text: 'hasdefault',link: '#hasdefault'},
+            { text: 'findwallet',link: '#findwallet'},
+            { text: 'getencryptdata',link: '#getencryptdata'},
+            { text: 'savewallet',link: '#savewallet'},
+          ]
+        },
       ]
     },
     {
@@ -188,21 +280,98 @@ function jccLib() {
     {
       text: 'Wallet',
       collapsed: false,
+      base: '/jcc_jingtum_lib/wallet',
+      // collapsed: true,
       items: [
-        { text: '如何使用', link: 'wallet'},
+        { text: '构造函数', link: '#构造函数'},
+        { text: '创建钱包', link: '#创建钱包'},
+        { text: '得到钱包地址', link: '#得到钱包地址'},
+        { text: '生成hash', link: '#生成hash'},
+        { text: '校验地址', link: '#校验地址'},
+        { text: '校验密钥', link: '#校验密钥'},
+        { text: '获取fee', link: '#获取fee'},
+        { text: '获取基础币', link: '#获取基础币'},
+        { text: '获取发行方(issuer)', link: '#获取发行方-issuer'},
+        { text: '签名-sign', link: '#签名-sign'},
+        { text: '多签名-multisign', link: '#多签名-multisign'},
       ]
     },
     {
       text: 'Transaction',
       collapsed: false,
+      base: '/jcc_jingtum_lib/Transaction/',
       items: [
-        { text: '构造函数', link: 'Transaction/constructor'},
-        { text: '账号管理', link: 'Transaction/account'},
-        { text: '交易相关', link: 'Transaction/transaction'},
-        { text: 'ERC20（Token）', link: 'Transaction/erc20'},
-        { text: 'ERC721（NFT）', link: 'Transaction/erc721'},
-        { text: '多签名', link: 'Transaction/multisign'},
-        { text: '构造tx', link: 'Transaction/tx'}
+        { 
+          text: '构造函数', 
+          link: 'constructor',
+          // link: 'Transaction/constructor'
+        },
+        { 
+          text: '账号管理', 
+          base: '/jcc_jingtum_lib/Transaction/account',
+          collapsed: true,
+          // link: 'Transaction'
+          items: [
+            { text: '冻结账号 (管理员)', link: '#冻结账号-管理员'},
+            { text: '解冻账号 (管理员)', link: '#解冻账号-管理员'},
+            { text: '设置平台手续费 (管理员)', link: '#设置平台手续费-管理员'},
+            { text: '设置ManageIssuer (管理员)', link: '#设置manageissuer-管理员'}
+          ]
+        },
+        { 
+          text: '交易相关', 
+          base: '/jcc_jingtum_lib/Transaction/transaction',
+          collapsed: true,
+          // link: 'Transaction/transaction'
+          items: [
+            { text: '获取钱包地址的Sequence', link: '#获取钱包地址的sequence'},
+            { text: '获取对应Hash的交易信息', link: '#获取对应hash的交易信息'},
+            { text: '查看账户历史交易', link: '#查看账户历史交易'},
+            { text: '发送交易(blob)', link: '#发送交易-blob'},
+            { text: '发送交易', link: '#发送交易'},
+            { text: 'tx是否经过验证', link: '#tx是否经过验证'},
+            { text: 'tx的结果是否成功', link: '#tx的结果是否成功'},
+            { text: '获取节点', link: '#获取节点'},
+            { text: '设置节点', link: '#设置节点'},
+          ]
+        },
+        { 
+          text: 'ERC20（Token）', 
+          base: '/jcc_jingtum_lib/Transaction/erc20',
+          collapsed: true,
+          // link: 'Transaction/erc20'
+          items: [
+            { text: '创建委托', link: '#创建委托'},
+            { text: '取消委托', link: '#取消委托'},
+            { text: 'token转账', link: '#token转账'},
+            { text: '通证发行 (管理员)', link: '#通证发行-管理员'}
+          ]
+        },
+        { 
+          text: 'ERC721（NFT）', 
+          base: '/jcc_jingtum_lib/Transaction/erc721',
+          collapsed: true,
+          // link: 'Transaction/erc721'
+          items: [
+            { text: '查看账户拥有的erc721 token', link: '#查看账户拥有的erc721-token'},
+            { text: '获取erc721 token详情', link: '#获取erc721-token详情'},
+            { text: 'NFT发行 (管理员)', link: '#nft发行-管理员'},
+            { text: '铸造NFT (NFT发行方)', link: '#铸造nft-nft发行方'},
+            { text: '销毁NFT (NFT发行方)', link: '#销毁nft-nft发行方'},
+            { text: 'NFT发行 (管理员)', link: '#nft发行-管理员'}
+          ]
+        },
+        { 
+          text: '多签名', 
+          base: '/jcc_jingtum_lib/Transaction/multisign',
+          collapsed: true,
+          // link: 'Transaction/multisign'
+          items: [
+            { text: '设置多签账号', link: '#设置多签账号'},
+            { text: '设置多签账号是否禁用密钥', link: '#设置多签账号是否禁用密钥'}
+          ]
+        },
+        { text: '构造tx', link: 'tx'}
       ]
     },
     {
@@ -223,10 +392,50 @@ function jccWalletJava() {
       ]
     },{
       text: 'Wallet（非国密）',
-      link: '/wallet'
+      base: 'jcc_wallet_java/wallet',
+      collapsed: true,
+      items: [
+        { text: '构造器', link: '#构造器'},
+        { text: '随机生成钱包地址-generate', link: '#随机生成钱包地址-generate'},
+        { text: '根据密钥生成钱包-fromSecret', link: '#根据密钥生成钱包-fromsecret'},
+        { text: '判断钱包地址是否有效-isValidAddress', link: '#判断钱包地址是否有效-isvalidaddress'},
+        { text: '判断钱包密钥是否有效-isValidSecret', link: '#判断钱包密钥是否有效-isvalidsecret'},
+        { text: '获取钱包公钥-getPublicKey', link: '#获取钱包公钥-getpublickey'},
+        { text: '使用钱包密钥对信息进行签名-sign', link: '#使用钱包密钥对信息进行签名-sign'},
+        { text: '校验信息的自作签名是否正确-verify', link: '#校验信息的自作签名是否正确-verify'},
+        { text: '通过公钥获取钱包地址-getAddress', link: '#通过公钥获取钱包地址-getaddress'},
+        { text: '获取钱包地址-getAddress', link: '#获取钱包地址-getaddress'},
+        { text: '获取钱包密钥-getSecret', link: '#获取钱包密钥-getsecret'},
+        { text: '获取钱包keypairs属性-getKeypairs', link: '#获取钱包keypairs属性-getkeypairs'},
+        { text: '设置钱包keypairs属性-setKeypairs', link: '#设置钱包keypairs属性-setkeypairs'},
+        { text: '设置钱包密钥-setSecret', link: '#设置钱包密钥-setsecret'},
+        { text: '设置钱包字母表-setAlphabet', link: '#设置钱包字母表-setalphabet'},
+        { text: '获取钱包字母表-getAlphabet', link: '#获取钱包字母表-getalphabet'},
+      ]
+      // link: '/wallet'
     },{
       text: 'WalletSM（国密）',
-      link: '/walletsm'
+      // link: '/walletsm'
+      base: 'jcc_wallet_java/walletsm',
+      collapsed: true,
+      items: [
+        { text: '构造器', link: '#构造器'},
+        { text: '随机生成钱包地址-generate', link: '#随机生成钱包地址-generate'},
+        { text: '根据密钥生成钱包-fromSecret', link: '#根据密钥生成钱包-fromsecret'},
+        { text: '判断钱包地址是否有效-isValidAddress', link: '#判断钱包地址是否有效-isvalidaddress'},
+        { text: '判断钱包密钥是否有效-isValidSecret', link: '#判断钱包密钥是否有效-isvalidsecret'},
+        { text: '获取钱包公钥-getPublicKey', link: '#获取钱包公钥-getpublickey'},
+        { text: '使用钱包密钥对信息进行签名-sign', link: '#使用钱包密钥对信息进行签名-sign'},
+        { text: '校验信息的自作签名是否正确-verify', link: '#校验信息的自作签名是否正确-verify'},
+        { text: '通过公钥获取钱包地址-getAddress', link: '#通过公钥获取钱包地址-getaddress'},
+        { text: '获取钱包地址-getAddress', link: '#获取钱包地址-getaddress'},
+        { text: '获取钱包密钥-getSecret', link: '#获取钱包密钥-getsecret'},
+        { text: '获取钱包keypairs属性-getKeypairs', link: '#获取钱包keypairs属性-getkeypairs'},
+        { text: '设置钱包keypairs属性-setKeypairs', link: '#设置钱包keypairs属性-setkeypairs'},
+        { text: '设置钱包密钥-setSecret', link: '#设置钱包密钥-setsecret'},
+        { text: '设置钱包字母表-setAlphabet', link: '#设置钱包字母表-setalphabet'},
+        { text: '获取钱包字母表-getAlphabet', link: '#获取钱包字母表-getalphabet'},
+      ]
     }
   ]
 }
@@ -243,7 +452,20 @@ function jccLibJava() {
       text: 'Builder',
       collapsed: false,
       items: [
-        { text: 'JccJingtum.Builder', link: '/builder'},
+        { 
+          text: 'JccJingtum.Builder', 
+          base: 'jcc_jingtum_lib_java/builder',
+          collapsed: true,
+          // link: '/builder'
+          items: [
+            { text: '构造器', link: '#构造器'},
+            { text: '设置钱包字母表', link: '#设置钱包字母表-setalphabet'},
+            { text: '设置每笔交易燃料费', link: '#设置每笔交易燃料费-setfee'},
+            { text: '设置链基础通证', link: '#设置链基础通证-setbasetoken'},
+            { text: '设置交易平台账号', link: '#设置交易平台账号-setplatform'},
+            { text: '实例化JccJingtum', link: '#实例化jccjingtum-build'}
+          ]
+        },
       ]
       
     },{
@@ -251,13 +473,146 @@ function jccLibJava() {
       collapsed: false,
       items: [
         { text: '实例化', link: 'JccJingtum/jingtum'},
-        { text: '基础信息', link: 'JccJingtum/basic'},
-        { text: '账号管理', link: 'JccJingtum/account'},
-        { text: '交易相关', link: 'JccJingtum/transaction'},
-        { text: '节点相关', link: 'JccJingtum/rpcHost'},
-        { text: '工具方法', link: 'JccJingtum/tool'},
+        { 
+          text: '基础信息', 
+          base: 'jcc_jingtum_lib_java/JccJingtum/basic',
+          collapsed: true,
+          // link: 'JccJingtum/basic'
+          items: [
+            { text: '获取钱包字母表', link: '#获取钱包字母表-getalphabet'},
+            { text: '获取每笔交易燃料费', link: '#获取每笔交易燃料费-getfee'},
+            { text: '获取链基础通证', link: '#获取链基础通证-getbasetoken'},
+            { text: '获取交易平台账号', link: '#获取交易平台账号-getplatform'},
+            { text: '获取异常重试次数', link: '#获取异常重试次数-gettrytimes'}
+          ]
+        },
+        { 
+          text: '账号管理', 
+          base: 'jcc_jingtum_lib_java/JccJingtum/account',
+          collapsed: true,
+          // link: 'JccJingtum/account'
+          items: [
+            { text: '创建钱包(账号)', link: '#创建钱包-账号-createwallet'},
+            { text: '通过钱包密钥获取钱包地址', link: '#通过钱包密钥获取钱包地址-getaddress'},
+            { text: '获取sequence', link: '#获取sequence-getsequence'},
+            { text: '向指定节点获取sequence', link: '#向指定节点获取sequence-getsequence'}
+          ]
+        },
+        { 
+          text: '交易相关', 
+          base: 'jcc_jingtum_lib_java/JccJingtum/transaction',
+          collapsed: true,
+          // link: 'JccJingtum/transaction'
+          items: [
+            { text: '构造撤单交易数据', link: '#构造撤单交易数据-buildcancleorder'},
+            { text: '构造挂单交易数据(本地签名)', link: '#构造挂单交易数据-本地签名-buildcreateorder'},
+            { text: '构造转账交易数据', link: '#构造转账交易数据-buildpayment'},
+            { text: '发送交易请求(签名后的数据，本地签名)', link: '#发送交易请求-签名后的数据-本地签名-submitblob'},
+            { text: '向指定节点发送交易请求(签名后的数据，本地签名)', link: '#向指定节点发送交易请求-签名后的数据-本地签名-submitblob'},
+            { text: '发送交易请求(非本地签名)', link: '#发送交易请求-非本地签名-submitwithsecret'},
+            { text: '向指定节点发送交易请求(非本地签名)', link: '#向指定节点发送交易请求-非本地签名-submitwithsecret'},
+            { text: '根据hash获取交易详情', link: '#根据hash获取交易详情-requesttx'},
+            { text: '根据hash向指定节点获取交易详情', link: '#根据hash向指定节点获取交易详情-requesttx'},
+          ]
+        },
+        { 
+          text: '节点相关', 
+          base: 'jcc_jingtum_lib_java/JccJingtum/rpcHost',
+          collapsed: true,
+          // link: 'JccJingtum/rpcHost'
+          items: [
+            { text: '获取指定节点状态', link: '#获取指定节点状态-getserverstate'},
+            { text: '获取节点状态', link: '#获取节点状态-getserverstate'},
+            { text: '获取rpc节点列表', link: '#获取rpc节点列表-getrpcnodes'}
+          ]
+        },
+        { 
+          text: '工具方法', 
+          base: 'jcc_jingtum_lib_java/JccJingtum/tool',
+          collapsed: true,
+          // link: 'JccJingtum/tool'
+          items: [
+            { text: '16进制备注内容直接转换成为字符串', link: '#_16进制备注内容直接转换成为字符串-无需unicode解码-getmemodata'},
+            { text: '时间戳转换', link: '#时间戳转换-区块链账本上的时间戳是相对于2000-01-01-08-00-00的偏移时间-换算成当前时间需要转换-converttime'}
+          ]
+        },
       ]
       
+    }
+  ]
+}
+
+function jcc_cloud() {
+  return [
+    {
+      text: '介绍',
+      collapsed: false,
+      items: [
+        { text: '使用', link: 'explorer/introduction'},
+      ]
+    },
+    {
+      text: 'Block相关接口',
+      collapsed: false,
+      base: '/jcc_cloud/explorer/block',
+      items: [
+        { text: '查询指定区块内包含的交易列表', link: '#查询指定区块内包含的交易列表'},
+        { text: '查询最新的6个区块基本信息', link: '#查询最新的6个区块基本信息'},
+        { text: '查询所有区块基本信息', link: '#查询所有区块基本信息'},
+      ]
+    },
+    {
+      text: 'Hash相关接口',
+      collapsed: false,
+      base: '/jcc_cloud/explorer/hash',
+      items: [
+        { text: '查询最新的6笔交易', link: '#查询最新的6笔交易'},
+        { text: '查询所有交易hash列表', link: '#查询所有交易hash列表'},
+        { text: '通过哈希查询对应的区块信息或交易信息', link: '#通过哈希查询对应的区块信息或交易信息'},
+        { text: '根据区块哈希查询其包含的交易列表', link: '#根据区块哈希查询其包含的交易列表'},
+      ]
+    },
+    {
+      text: 'Wallet相关接口',
+      collapsed: false,
+      base: '/jcc_cloud/explorer/wallet',
+      items: [
+        { text: '查询指定钱包的余额', link: '#查询指定钱包的余额'},
+        { text: '查询指定钱包的当前委托单', link: '#查询指定钱包的当前委托单'},
+        { text: '查询指定钱包的历史交易', link: '#查询指定钱包的历史交易'},
+        { text: '查询银关地址发行过tokens', link: '#查询银关地址发行过tokens'},
+        { text: '查询指定钱包的历史收费交易查询', link: '#查询指定钱包的历史收费交易查询'},
+      ]
+    },
+    {
+      text: '统计相关接口',
+      collapsed: false,
+      base: '/jcc_cloud/explorer/sum',
+      items: [
+        { text: '通证信息查询', link: '#通证信息查询'},
+        { text: '查询通证流通信息', link: '#查询通证流通信息'},
+        { text: '查询所有通证分类列表', link: '#查询所有通证分类列表'},
+        { text: '链上交易量统计', link: '#链上交易量统计'},
+        { text: '链上新增用户数统计', link: '#链上新增用户数统计'},
+        { text: '用户钱包资产统计', link: '#用户钱包资产统计'},
+      ]
+    },
+    {
+      text: 'ERC721相关接口',
+      collapsed: false,
+      base: '/jcc_cloud/explorer/erc721',
+      items: [
+        { text: '统计NFT信息', link: '#统计NFT信息'},
+        { text: '验证NFT通证是否存在', link: '#验证NFT通证是否存在'},
+        { text: '验证NFT通证ID是否存在', link: '#验证NFT通证ID是否存在'},
+        { text: '查询NFT通证转移记录', link: '#查询NFT通证转移记录'},
+        { text: '查询NFT发行状况', link: '#查询NFT发行状况'},
+        { text: '查询NFT最新状态（发行、流通、销毁）', link: '#查询NFT最新状态'},
+      ]
+    },                                                                                                   
+    {
+      text: 'TX类型',
+      link: 'explorer/tx'
     }
   ]
 }
