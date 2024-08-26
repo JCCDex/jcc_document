@@ -267,3 +267,49 @@ public async function fetchTokenBalanceStatistic(options: IFetchTokenBalanceStat
 }
 ```
 
+## 获取某交易对的最新交易记录 -- fetchLatestTransactions{#获取某交易对的最新交易记录}
+
+> **该接口只返回交易对最近的50条交易记录**
+
+### 方法签名
+
+```typescript
+public async function fetchLatestTransactions(options: IFetchLatestTransactionsOptions): Promise<IFetchLatestTransactionsResponse>
+```
+
+### 方法参数
+
+```typescript
+{
+  uuid: string;        // <必须传值> 随机的通用唯一识别码
+  base: string;        // <必须传值> 币种名称
+  counter: string;     // <必须传值> 币种名称
+}
+```
+
+### 返回数据格式
+
+```typescript
+{
+  code: string, // 查询结果是否成功标志
+  msg: string,  // 查询结果是否成功的描述
+  data: { 
+    records: [
+      {
+        Account: string;       // 交易账号
+        Sequence: number;      // 交易序列号
+        TakerGets: IToken;     // 交易对方得到币种和数量
+        TakerPays: IToken;     // 交易方自己得到的币种和数量
+        close_time: number;    // 交易时间
+        gets_pays: string;     // 交易比例 base/counter
+        hash: string;          // 交易hash
+        ledger_index: number;  
+        matchFlag: number;     // 撮合标志，（若没有撮合，则该字段不存在；数字: 表示多方撮合，比如3表示
+        matchNum: number;      
+        pays_gets: string;     // 交易比例 counter/base
+       },
+      // ...
+    ];
+  }
+}
+```

@@ -33,9 +33,13 @@ export default defineConfig({
         base: '/jcc_jingtum_lib_java/',
         items: jccLibJava()
       },
-      '/jcc_cloud/': {
-        base: '/jcc_cloud/',
-        items: jcc_cloud()
+      '/jcc_cloud/explorer': {
+        base: '/jcc_cloud/explorer',
+        items: jccCloudExplorer()
+      },
+      '/jcc_cloud/txpool': {
+        base: '/jcc_cloud/txpool',
+        items: jccCloudTxPool()
       },
 
     },
@@ -106,6 +110,7 @@ function nav() {
     },
     { text: 'jcc_cloud', items: [
         { text: '浏览器服务', link: '/jcc_cloud/explorer/introduction' },
+        { text: '交易池服务', link: '/jcc_cloud/txpool/introduction' },
       ] 
     },
   ]
@@ -542,13 +547,13 @@ function jccLibJava() {
   ]
 }
 
-function jcc_cloud() {
+function jccCloudExplorer() {
   return [
     {
       text: '介绍',
       collapsed: false,
       items: [
-        { text: '使用', link: 'explorer/introduction'},
+        { text: '使用', link: '/introduction'},
       ]
     },
     {
@@ -595,6 +600,7 @@ function jcc_cloud() {
         { text: '链上交易量统计', link: '#链上交易量统计'},
         { text: '链上新增用户数统计', link: '#链上新增用户数统计'},
         { text: '用户钱包资产统计', link: '#用户钱包资产统计'},
+        { text: '获取某交易对的最新交易记录', link: '#获取某交易对的最新交易记录'},
       ]
     },
     {
@@ -612,7 +618,37 @@ function jcc_cloud() {
     },                                                                                                   
     {
       text: 'TX类型',
-      link: 'explorer/tx'
+      link: '/tx'
+    }
+  ]
+}
+
+function jccCloudTxPool() {
+  return [
+    {
+      text: '介绍',
+      collapsed: false,
+      items: [
+        { text: '使用', link: '/introduction'},
+      ]
+    },
+    {
+      text: '相关接口',
+      collapsed: false,
+      base: '/jcc_cloud/txpool/api',
+      items: [
+        { text: '获取地址公钥信息', link: '#获取地址公钥信息'},
+        { text: '从交易池服务获取seq', link: '#从交易池服务获取seq'},
+        { text: '批量签名', link: '#批量签名'},
+        { text: '提交交易内容到交易池', link: '#提交交易内容到交易池'},
+        { text: '查询某地址在交易池中的状态', link: '#查询某地址在交易池中的状态'},
+        { text: '取消某地址所有未上链和上链失败的交易', link: '#取消某地址所有未上链和上链失败的交易'},
+        { text: '获取交易池中的交易数量', link: '#获取交易池中的交易数量'},
+      ]
+    },                                                                                                 
+    {
+      text: 'TX类型',
+      link: '/tx'
     }
   ]
 }

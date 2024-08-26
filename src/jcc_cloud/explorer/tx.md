@@ -72,6 +72,7 @@ export interface IOffer {
 export interface IFetchOffersResponse extends IResponse {
   data: {
     offers: IOffer[];
+    count: number; // the total number of offer orders
   };
 }
 
@@ -80,7 +81,12 @@ export enum OrderType {
   OfferAffect = "OfferAffect",
   OfferCancel = "OfferCancel",
   Send = "Send",
-  Receive = "Receive"
+  Receive = "Receive",
+  ManageIssuer = "ManageIssuer",
+  SetBlackList = "SetBlackList",
+  RemoveBlackList = "RemoveBlackList",
+  AccountSet = "AccountSet",
+  SignerListSet = "SignerListSet"
 }
 
 export interface IFetchHistoryOrdersOptions extends IUUID, IBaseRequest {
@@ -109,6 +115,16 @@ interface IBrokerage {
   value: string; // fee quantity
 }
 
+interface ISigners { // the signers info of this transaction if it is a multi-sign transaction
+  SignerQuorum: number;
+  Signers: {
+    Account: string;
+    SignerWeight: number;
+    setstats: number;
+    signflag: number;
+  }[];
+}
+
 export interface IHistoryOrder {
   type: string; // order type
   time: number; // the creation time of the order
@@ -132,6 +148,17 @@ export interface IHistoryOrder {
   offerSeq?: number; // the sequence number of the canceled order; when type = (OfferCancel)
   platform?: string; // the platform for order; when type = (OfferCreate, OfferAffect)
   brokerage?: IBrokerage; // the brokerage info of order; when type = (OfferCreate, OfferAffect)
+  /** if type = "AccountSet" or "SignerListSet", The following types of data will be returned */ 
+  SetFlag?: number; // Setflag means the account disable its own secret
+  ClearFlag?: number; // Clearflag means Signers votes to enable this account's secret
+  SignerQuorum?: number; // number of signers in this account
+  Signers?: ISigners;
+  SignerEntries?: {
+    SignerEntry: {
+      Account: string;
+      SignerWeight: number;
+    };
+  }[];
 }
 
 export interface IFetchHistoryOrdersResponse extends IResponse {
@@ -226,6 +253,7 @@ export interface IBlockTransaction {
   realPays?: IToken; // actual remaining quantity to be received of this transaction; when type = "OfferCreate"
   brokerage?: IBrokerage; // brokerage info of transaction; when type = "OfferCreate" | "OfferCancel"
   affectedNodes?: IMatchTradeInfo[]; // the matched trades info of this transaction; when type = "OfferCreate"
+  Signers?: ISigners;
 }
 
 export interface IFetchBlockTransactionsResponse extends IResponse {
@@ -340,7 +368,7 @@ export interface IFetchNftTokenIdOptions extends IUUID, IBaseRequest {
 export interface IFetchNftTokenIdResponse extends IResponse {
   data: {
     tokenIds: string[];
-  }
+  };
 }
 
 export enum NftTransactionType {
@@ -521,6 +549,7 @@ export interface IBlockHashDetailInfo {
   brokerage?: IBrokerage; // brokerage info of transaction; when type = "OfferCreate" | "OfferCancel"
   affectedNodes?: IMatchTradeInfo[];
   flag?: number; // Active and passive transaction flag
+  Signers?: ISigners;
 }
 
 export interface IFetchBlockHashDetailResponse extends IResponse {
@@ -700,6 +729,46 @@ export interface IFetchTokenBalanceStatisticResponse extends IResponse {
       value: string;
     }[];
   };
+}
+
+export interface IFetchLatestTransactionsOptions extends IUUID, IBaseRequest {
+  base: string;
+  counter: string;
+}
+
+export interface ITransactionRecord {
+  Account: string;
+  Sequence: number;
+  TakerGets: IToken;
+  TakerPays: IToken;
+  close_time: number;
+  gets_pays: string;
+  hash: string;
+  ledger_index: number;
+  matchFlag: number;
+  matchNum: number;
+  pays_gets: string;
+}
+
+export interface IFetchLatestTransactionsResponse extends IResponse {
+  data: {
+    records: ITransactionRecord[];
+  };
+}
+
+interface IKeypair {
+  privateKey: string;
+  publicKey: string;
+}
+
+export abstract class AbstractKeyPair {
+  public abstract deriveKeyPair(secret: string): IKeypair;
+  public abstract deriveAddress(publicKey: string): string;
+  public abstract sign(data: string, privateKey: string): string;
+  public abstract signTx(data: unknown, privateKey: string): unknown;
+  public abstract isValidSecret(secret: string): boolean;
+  public abstract isValidAddress(address: string): boolean;
+  public abstract hash(message: string): string;
 }
 ```
 

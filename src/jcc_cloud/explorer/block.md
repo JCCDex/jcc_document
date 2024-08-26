@@ -144,7 +144,7 @@ public async function fetchLatestSixBlocks(options: IFetchLatestSixBlocksOptions
 
 ```typescript
 {
-	code: string,    // 查询结果是否成功标志
+  code: string,    // 查询结果是否成功标志
   msg: string,     // 查询结果是否成功的描述
   data: {          // 查询结果内容
     blocks: [

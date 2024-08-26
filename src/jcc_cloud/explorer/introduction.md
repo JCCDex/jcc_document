@@ -24,6 +24,14 @@ yarn add @jccdex/cloud
 
 :::
 
+## 类签名
+
+```typescript
+class JCCDexExplorer {
+  constructor(baseUrl: string, customFetch?: unknown) {}
+}
+```
+
 ## 使用
 
 ::: code-group

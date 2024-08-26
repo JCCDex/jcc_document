@@ -124,10 +124,10 @@ public async function fetchAllHash(options: IFetchAllHashOptions): Promise<IFetc
   size: PageSize;         // 每页条数,缺省20，可选10，20，50，100
   beginTime: string;      // 表示查询开始日期（可以不传值，格式：2023-01-01）
   endTime: string;        // 表示查询结束日期（可以不传值，格式同beginTime）
-  type?: TransactionType; // 交易类型，如"OfferCreate", "OfferCancel", "payment"
-  buyOrSell?: TradeType;  // 买卖关系，1 买 2 卖 0 所有
-  coinPair?: string;      // 交易对例如: "JETH-JUSDT",  "JETH-",  "-JUSDT", "JETH"
-  matchFlag?: number;     // 主动成交撮合查询标志， 不建议使用此字段
+  type: TransactionType;  // 交易类型，如"OfferCreate", "OfferCancel", "payment"
+  buyOrSell: TradeType;   // 买卖关系，1 买 2 卖 0 所有
+  coinPair: string;       // 交易对例如: "JETH-JUSDT",  "JETH-",  "-JUSDT", "JETH"
+  matchFlag: number;      // 主动成交撮合查询标志， 不建议使用此字段
 }
 ```
 
