@@ -617,6 +617,14 @@ function jccCloudExplorer() {
       ]
     },                                                                                                   
     {
+      text: 'Offer相关接口',
+      collapsed: false,
+      base: '/jcc_cloud/explorer/offer',
+      items: [
+        { text: '指定钱包指定订单的订单状态查询', link: '#指定钱包指定订单的订单状态查询'},
+      ]
+    },                                                                                                   
+    {
       text: 'TX类型',
       link: '/tx'
     }
