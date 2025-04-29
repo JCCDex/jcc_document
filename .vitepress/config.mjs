@@ -41,7 +41,10 @@ export default defineConfig({
         base: '/jcc_cloud/txpool',
         items: jccCloudTxPool()
       },
-
+      '/jcc_blog/': {
+        base: '/jcc_blog',
+        items: jccBlog()
+      },
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/JCCDex/jcc_document' }
@@ -113,6 +116,7 @@ function nav() {
         { text: '交易池服务', link: '/jcc_cloud/txpool/introduction' },
       ] 
     },
+    { text: 'Blog', link: '/jcc_blog/01_blog',activeMatch: '/jcc_blog/' },
   ]
 }
 
@@ -658,5 +662,13 @@ function jccCloudTxPool() {
       text: 'TX类型',
       link: '/tx'
     }
+  ]
+}
+
+function jccBlog() {
+  return [
+    { text: '从传统软件到区块链的接口自省', link: '/01_blog'},
+    { text: '了解EVM内存管理', link: '/02_blog'},
+    { text: '从EVM安全事故中汲取教训', link: '/03_blog'},
   ]
 }
