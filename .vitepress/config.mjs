@@ -670,5 +670,6 @@ function jccBlog() {
     { text: '从传统软件到区块链的接口自省', link: '/01_blog'},
     { text: '了解EVM内存管理', link: '/02_blog'},
     { text: '从EVM安全事故中汲取教训', link: '/03_blog'},
+    { text: 'Uniswap v4 hook 应用场景分析', link: '/04_blog'},
   ]
 }
