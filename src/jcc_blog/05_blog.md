@@ -4,7 +4,8 @@
 
 与传统软件将所有逻辑集成在一个程序中的方式不同，UUPS 将智能合约拆分为两部分：**代理合约**和**业务逻辑合约**。代理合约作为用户交互的固定入口，其地址保持不变；业务逻辑合约则负责实现具体的功能，并通过代理合约注册执行。需要升级时，只需更新业务逻辑合约并将其重新注册到代理合约即可。这种设计实现了合约的可升级性，同时保留了数据的连续性。
 
-![proxy-logic-storage](uploads/e0b61b91c3cc8ba5ff98d3e962a728f0/proxy-logic-storage.jpg)
+![proxy-logic-storage](/asset/proxy-logic-storage.jpg)
+
 ---
 
 #### 业务数据存储
