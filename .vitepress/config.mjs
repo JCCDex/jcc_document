@@ -671,5 +671,6 @@ function jccBlog() {
     { text: '了解EVM内存管理', link: '/02_blog'},
     { text: '从EVM安全事故中汲取教训', link: '/03_blog'},
     { text: 'Uniswap v4 hook 应用场景分析', link: '/04_blog'},
+    { text: '如何编写一个可升级的工业级智能合约', link: '/05_blog'},
   ]
 }
