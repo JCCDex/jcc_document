@@ -672,5 +672,6 @@ function jccBlog() {
     { text: '从EVM安全事故中汲取教训', link: '/03_blog'},
     { text: 'Uniswap v4 hook 应用场景分析', link: '/04_blog'},
     { text: '如何编写一个可升级的工业级智能合约', link: '/05_blog'},
+    { text: 'Foundry - 区块链工匠与他的铸造工坊', link: '/06_blog'},
   ]
 }
