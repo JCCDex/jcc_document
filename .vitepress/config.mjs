@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: 'zh-CN',
@@ -92,7 +93,8 @@ export default defineConfig({
           global: true,
           process: true,
         }
-      })
+      }),
+      ViteImageOptimizer(),
     ],
   }
 })
