@@ -1,3 +1,6 @@
+# Foundry - 生产级开发实践 : 从工坊到工厂
+
+![Foundry](/asset/08_blog_bg.png)
 在前两篇文章中，我们已经从学徒成长为熟练的智能合约铁匠。而今天，我们将走进工业革命后的大型锻造厂，学习如何将小作坊式的合约开发升级为流水线生产，打造真正可用于生产环境的区块链应用。准备好了吗？让我们穿上防护服，步入这座炽热的产业级锻造工坊。
 
 ## 1. DeFi 项目实战：从铁器到金融机器
@@ -546,8 +549,6 @@ function sumArray(uint256[] calldata values) external pure returns (uint256 sum)
 
 带着这些工业级的工具和思维，去建造未来的区块链世界吧！
 
---------------------
-
 ## 写在最后
 
 感谢您阅读本文！如果这篇文章对您有所帮助，欢迎点赞、收藏和分享，这是对我创作的最大鼓励。
@@ -559,7 +560,9 @@ function sumArray(uint256[] calldata values) external pure returns (uint256 sum)
 ### 加入技术社区
 
 🔹 **技术交流QQ群** : 568285439
+
 🔹 **GitHub**：[jccdex](https://github.com/jccdex) - 关注获取示例代码和开源项目
+
 🔹 **公众号**：[井畅] - 每周更新，分享行业动态与技术心得
 
 ### 下期预告
