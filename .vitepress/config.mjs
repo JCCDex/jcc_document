@@ -677,5 +677,6 @@ function jccBlog() {
     { text: 'Foundry - 区块链工匠与他的铸造工坊', link: '/06_blog'},
     { text: 'Foundry - 高级测试与开发技巧：铁匠的秘传绝艺', link: '/07_blog'},
     { text: 'Foundry - 生产级开发实践 : 从工坊到工厂', link: '/08_blog'},
+    { text: '区块链签名之旅：从混乱到秩序的演化史', link: '/09_blog'},
   ]
 }
