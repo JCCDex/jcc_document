@@ -46,6 +46,10 @@ export default defineConfig({
         base: '/jcc_blog',
         items: jccBlog()
       },
+      '/ccdao_connector/': {
+        base: '/ccdao_connector',
+        items: ccdaoConnector()
+      },
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/JCCDex/jcc_document' }
@@ -119,6 +123,7 @@ function nav() {
       ] 
     },
     { text: 'Blog', link: '/jcc_blog/01_blog',activeMatch: '/jcc_blog/' },
+    { text: 'CCDAO Connector', link: '/ccdao_connector/ccdao',activeMatch: '/ccdao_connector/' },
   ]
 }
 
@@ -679,5 +684,11 @@ function jccBlog() {
     { text: 'Foundry - 生产级开发实践 : 从工坊到工厂', link: '/08_blog'},
     { text: '区块链签名之旅：从混乱到秩序的演化史', link: '/09_blog'},
     { text: 'EIP-712的"结构化革命"：让签名变得人类友好', link: '/10_blog'},
+  ]
+}
+
+function ccdaoConnector() {
+  return [
+    { text: 'CCDAO 钱包连接器', link: '/ccdao'},
   ]
 }
