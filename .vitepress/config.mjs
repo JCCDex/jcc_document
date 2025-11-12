@@ -686,6 +686,7 @@ function jccBlog() {
     { text: 'EIP-712的"结构化革命"：让签名变得人类友好', link: '/10_blog'},
     { text: 'EIP-1271合约签名的黑魔法', link: '/11_blog'},
     { text: 'EIP7702 和 EIP-4337：账户抽象的"大一统"革命', link: '/12_blog'},
+    { text: 'MEV的生死劫', link: '/13_blog'},
   ]
 }
 
