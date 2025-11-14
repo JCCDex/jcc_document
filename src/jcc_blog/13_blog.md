@@ -1,6 +1,6 @@
 # MEV的生死劫
 
-![MEV法律风暴](mev-legal-storm.jpg)
+![MEV法律风暴](/asset/13_blog_bg.png)
 
 ## 开篇：一场"代码即法律"的现实碰撞
 
