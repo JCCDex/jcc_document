@@ -133,8 +133,8 @@
 2. **共识达成阶段**：
    - 收集多个验证者的签名投票
    - 通过拜占庭容错(BFT)算法达成共识
-   - 设定共识阈值（例如2/3以上验证者认为"真实"）
-   - 当达成共识时，生成多签证明
+   - 根据验证场景的特征灵活设定共识阈值和所需验证者数量
+   - 当达成共识要求时，生成多签证明
 
 3. **经济惩罚机制**：
    - **用户欺诈检测**：任何第三方都能通过在源链直接查询发现用户的虚假声明
@@ -267,7 +267,7 @@
   1. 验证VC中用户签名的有效性（确认声明来自私钥持有者）
   2. 验证IPFS哈希的格式和完整性
   3. 检查VC ID未被使用过（防重放）
-  4. 验证验证者网络的多签共识（2/3以上验证者同意）
+  4. 验证验证者网络的多签共识（根据业务场景验证所需的验证者数量和共识阈值）
   5. 将VC ID标记为已使用
 - 所有验证通过时，VC被确认为可信
 - 合约基于验证结果执行预定义业务逻辑：
@@ -526,70 +526,76 @@ contract PolygonGameAvatar {
 
 NFT头像设置这个用例的经济价值为 $0.1-1（虚拟道具的价值），属于**低价值操作**：
 ```solidity
-// Polygon验证者合约 - 采用动态验证机制
+// Polygon验证者合约 - 实现灵活的验证强度适配
 contract PolygonValidator {
     
-    // 根据经济价值决定所需验证者数
-    function getRequiredValidators(uint256 vcValue) 
-        internal pure returns (uint256) {
-        if (vcValue < 10 ether) return 3;        // 低价值：只需3人
-        if (vcValue < 100 ether) return 5;       // 中价值：需5人
-        if (vcValue < 1000 ether) return 7;      // 中高价值：需7人
-        return 10;                                // 高价值：需10人
+    // 可配置的验证参数，支持多维度调整
+    struct VerificationPolicy {
+        uint256 requiredValidators;   // 该场景所需验证者数
+        uint256 consensusThreshold;    // 共识百分比阈值
     }
     
-    // 根据经济价值决定共识阈值
-    function getConsensusThreshold(uint256 vcValue) 
-        internal pure returns (uint256) {
-        if (vcValue < 100 ether) return 100;     // 低价值：100%同意
-        if (vcValue < 1000 ether) return 80;     // 中价值：80%同意
-        return 75;                                // 高价值：75%同意
+    struct VerificationContext {
+        string ipfsHash;
+        uint256 economicValue;       // 操作的经济价值
+        uint8 riskLevel;             // 风险等级（1-5）
+        uint256 userCollateral;      // 用户抵押比例
+    }
+    
+    // 根据业务特征获取验证策略
+    // 该函数可实现为固定方案、动态调整、AI自适应等多种形式
+    function getVerificationPolicy(VerificationContext memory ctx) 
+        internal pure returns (VerificationPolicy memory) {
+        // 示例：基于经济价值和风险等级的参考实现
+        if (ctx.economicValue < 10 ether) {
+            return VerificationPolicy({requiredValidators: 3, consensusThreshold: 100});
+        } else if (ctx.economicValue < 100 ether) {
+            return VerificationPolicy({requiredValidators: 5, consensusThreshold: 80});
+        } else if (ctx.economicValue < 1000 ether) {
+            return VerificationPolicy({requiredValidators: 7, consensusThreshold: 80});
+        } else {
+            return VerificationPolicy({requiredValidators: 10, consensusThreshold: 75});
+        }
     }
     
     function submitVerificationResult(
-        string memory ipfsHash,
-        uint256 vcValue,           // NFT头像的经济价值（如$0.5）
+        VerificationContext memory ctx,
         bool verdict,
         bytes memory validatorSignature
     ) external onlyValidator {
         
         VerificationResult memory result = VerificationResult({
-            ipfsHash: ipfsHash,
+            ipfsHash: ctx.ipfsHash,
             validator: msg.sender,
             verdict: verdict,
             timestamp: block.timestamp,
             signature: validatorSignature
         });
         
-        results[ipfsHash].push(result);
+        results[ctx.ipfsHash].push(result);
         
-        uint256 requiredCount = getRequiredValidators(vcValue);
-        uint256 consensusThreshold = getConsensusThreshold(vcValue);
+        // 获取此业务场景所需的验证策略
+        VerificationPolicy memory policy = getVerificationPolicy(ctx);
         
-        // 关键：只需要足够的验证者投票，无需等待所有人
-        uint256 totalVotes = results[ipfsHash].length;
+        // 关键：采用灵活的验证强度，只需要足够的验证者投票
+        uint256 totalVotes = results[ctx.ipfsHash].length;
         
-        if (totalVotes >= requiredCount) {
+        if (totalVotes >= policy.requiredValidators) {
             // 计算已投票验证者中的真实票数
             uint256 trueCount = 0;
             for (uint i = 0; i < totalVotes; i++) {
-                if (results[ipfsHash][i].verdict) trueCount++;
+                if (results[ctx.ipfsHash][i].verdict) trueCount++;
             }
             
             // 检查是否达到共识阈值
             uint256 truePercentage = (trueCount * 100) / totalVotes;
             
-            if (truePercentage >= consensusThreshold) {
+            if (truePercentage >= policy.consensusThreshold) {
                 // ✓ 共识达成：声明【真实】
-                consensusAchieved[ipfsHash] = true;
-                emit ConsensusAchieved(ipfsHash, true, totalVotes, trueCount);
+                consensusAchieved[ctx.ipfsHash] = true;
+                emit ConsensusAchieved(ctx.ipfsHash, true, totalVotes, trueCount);
                 
                 // 立即返回，无需等待其他验证者
-                return;
-            } else if (totalVotes >= requiredCount * 2) {
-                // 虚假票已占多数，不可能翻转
-                consensusAchieved[ipfsHash] = false;
-                emit ConsensusAchieved(ipfsHash, false, totalVotes, trueCount);
                 return;
             }
         }
@@ -680,9 +686,9 @@ contract PolygonGameAvatar {
   * 链上状态 ✓
 - 恶意验证者A投票：虚假（错误投票！）
 - 诚实验证者B、C投票：真实 ✓
-- 共识结果：2/3验证者投真实，共识达成【真实】
+- 共识结果：诚实验证者占多数，共识达成【真实】
 - 验证者A的虚假投票被发现（与源链真实状态对比），质押被没收
-- 结果：即使有恶意验证者，也无法破坏多数诚实验证者的共识
+- 结果：即使有恶意验证者，BFT共识机制确保多数诚实验证者的意见不被少数恶意者破坏
 ```
 
 ### 实施例2：跨链信用评分系统
@@ -889,9 +895,9 @@ interface IValidatorNetwork {
 
 (2) 用户使用私钥对声明进行数字签名，生成可验证凭证(VC)，并将VC存储至IPFS分布式网络；
 
-(3) 当目标区块链需要使用该VC凭证时，去中心化验证者网络接收验证请求，多个独立验证者在源区块链上重现验证，对比VC中的声明是否与链上真实状态一致，并对验证结果进行签名投票；
+(3) 当目标区块链需要使用该VC凭证时，去中心化验证者网络接收验证请求，根据验证操作的业务特征（如经济价值、风险等级等维度）灵活确定参与验证的验证者数量，多个独立验证者在源区块链上重现验证，对比VC中的声明是否与链上真实状态一致，并对验证结果进行签名投票；
 
-(4) 通过拜占庭容错(BFT)共识机制，当达成预设阈值共识（如2/3以上验证者同意）时，生成多签证明；
+(4) 通过拜占庭容错(BFT)共识机制，当已投票的验证者数量达到该业务场景所需的数量阈值，且投票结果达成共识要求时，生成多签证明；
 
 (5) 目标区块链上的智能合约验证VC中用户的签名有效性、IPFS内容的完整性、VC ID的防重放检查，以及验证者网络的多签共识，所有验证通过后，合约基于该VC执行预定义的业务逻辑，包括但不限于授权访问控制、信用评分计算、资格审核、投票权分配等，全过程无需转移或锁定源链资产。
 
