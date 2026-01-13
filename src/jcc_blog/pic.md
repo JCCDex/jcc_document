@@ -4,26 +4,26 @@
 
 ```mermaid
 graph TD
-    A["🔗 源链 Ethereum<br/>链上可验证数据"] -->|用户声明| B["📝 Step 1: 用户在源链声明<br/>EIP-712签名"]
-    B -->|VC凭证| C["💾 Step 2: IPFS存储<br/>获取内容哈希"]
-    C -->|IPFS Hash| D["🔍 Step 3-4: 验证者网络<br/>三层验证"]
+    A["Source Chain<br/>Ethereum<br/>On-chain Data"] -->|User Claim| B["Step 1<br/>EIP-712<br/>Signature"]
+    B -->|VC<br/>Credential| C["Step 2<br/>IPFS<br/>Storage"]
+    C -->|IPFS Hash| D["Step 3-4<br/>Validators<br/>3-Layer Verification"]
     
-    D --> E["✓ Layer 1: IPFS完整性<br/>内容寻址校验"]
-    D --> F["✓ Layer 2: 用户签名<br/>ECDSA/EdDSA验证"]
-    D --> G["✓ Layer 3: 链上状态<br/>ownerOf/balanceOf"]
+    D --> E["Layer 1<br/>IPFS Integrity<br/>Hash Validation"]
+    D --> F["Layer 2<br/>User Signature<br/>ECDSA Verify"]
+    D --> G["Layer 3<br/>On-chain State<br/>ownerOf Check"]
     
-    E --> H["🗳️ Step 5: BFT共识<br/>验证者投票"]
+    E --> H["Step 5<br/>BFT Consensus<br/>Validator Voting"]
     F --> H
     G --> H
     
-    H -->|Validator A: TRUE ✓<br/>Validator B: TRUE ✓<br/>Validator C: TRUE ✓| I["🔐 共识达成: 3/3 = 100%<br/>多签证明生成"]
+    H -->|A: TRUE<br/>B: TRUE<br/>C: TRUE| I["Consensus: 3/3<br/>Multi-sig Proof"]
     
-    I -->|多签证明| J["⚙️ Step 6: 目标链执行<br/>Polygon Smart Contract"]
+    I -->|Multi-sig| J["Step 6<br/>Target Chain<br/>Polygon Execute"]
     
-    J --> K["✅ 验证完成:<br/>✓ 用户签名有效<br/>✓ IPFS内容完整<br/>✓ 防重放检查<br/>✓ 多签共识"]
+    J --> K["Verification<br/>Complete:<br/>Signature Valid<br/>IPFS Intact<br/>Replay Safe<br/>Multi-sig OK"]
     
-    K --> L["🎮 执行业务逻辑:<br/>设置游戏头像/更新信用评分/分配投票权"]
-    L -->|成功| M["✓ 结果: 头像设置成功"]
+    K --> L["Execute Business<br/>Logic:<br/>Avatar Setup<br/>Score Update<br/>Voting Rights"]
+    L -->|Success| M["Result:<br/>Avatar Set"]
     
     style A fill:#e1f5ff
     style C fill:#fff3e0
@@ -37,48 +37,48 @@ graph TD
 
 ```mermaid
 graph TB
-    subgraph SourceChain["🔗 源链层 - Ethereum"]
-        A1["Smart Contracts"]
-        A2["NFT/Token Data"]
-        A3["Governance Records"]
-        A4["On-chain State"]
+    subgraph SourceChain["Source Chain - Ethereum"]
+        A1["Smart<br/>Contracts"]
+        A2["NFT<br/>Token Data"]
+        A3["Governance"]
+        A4["On-chain<br/>State"]
     end
     
-    subgraph VCLayer["📄 VC凭证层"]
-        B1["用户声明生成"]
-        B2["EIP-712签名"]
-        B3["IPFS存储"]
-        B4["内容寻址"]
+    subgraph VCLayer["VC Credential Layer"]
+        B1["User Claim<br/>Generation"]
+        B2["EIP-712<br/>Signature"]
+        B3["IPFS<br/>Storage"]
+        B4["Content<br/>Addressing"]
     end
     
-    subgraph IPFSLayer["💾 IPFS分布式存储"]
-        C1["去中心化存储"]
-        C2["SHA-256哈希"]
-        C3["全球可访问"]
-        C4["成本低廉"]
+    subgraph IPFSLayer["IPFS Distributed Storage"]
+        C1["Decentralized<br/>Storage"]
+        C2["SHA-256<br/>Hash"]
+        C3["Globally<br/>Accessible"]
+        C4["Cost<br/>Efficient"]
     end
     
-    subgraph ValidatorNet["🔍 验证者网络"]
-        D1["Validator 1"]
-        D2["Validator 2"]
-        D3["Validator N"]
-        D4["经济激励 PoS"]
-        D5["BFT共识"]
+    subgraph ValidatorNet["Validator Network"]
+        D1["Validator<br/>1"]
+        D2["Validator<br/>2"]
+        D3["Validator<br/>N"]
+        D4["PoS<br/>Incentives"]
+        D5["BFT<br/>Consensus"]
     end
     
-    subgraph TargetChain["⚙️ 目标链层 - Polygon"]
-        E1["Smart Contracts"]
-        E2["VC验证"]
-        E3["业务逻辑"]
-        E4["执行模块"]
-        E5["防重放"]
+    subgraph TargetChain["Target Chain - Polygon"]
+        E1["Smart<br/>Contracts"]
+        E2["VC<br/>Verify"]
+        E3["Business<br/>Logic"]
+        E4["Execute<br/>Module"]
+        E5["Replay<br/>Protection"]
     end
     
-    subgraph Identity["👤 DID身份管理"]
-        F1["全局唯一标识"]
-        F2["跨链身份映射"]
-        F3["统一权限管理"]
-        F4["W3C标准"]
+    subgraph Identity["DID Identity Management"]
+        F1["Global<br/>Unique ID"]
+        F2["Cross-chain<br/>Mapping"]
+        F3["Unified<br/>Permissions"]
+        F4["W3C<br/>Standard"]
     end
     
     A1 --> B1
@@ -99,7 +99,7 @@ graph TB
     D3 --> D5
     D4 --> D5
     
-    D5 -->|多签证明| E2
+    D5 -->|Multi-sig| E2
     E2 --> E3
     E3 --> E4
     E1 --> E4
@@ -121,28 +121,28 @@ graph TB
 
 ```mermaid
 graph LR
-    subgraph VC["📄 Verifiable Credential Structure"]
-        H["vcId<br/>nft:bayc:1234"] --> B["issuer DID<br/>did:eth:0x..."]
+    subgraph VC["VC Credential Structure"]
+        H["vcId<br/>nft:bayc:1234"] --> B["issuer DID<br/>did:eth:0x"]
         B --> C["timestamp<br/>1704614400"]
         C --> D["sourceChain<br/>ethereum"]
         D --> E["targetChain<br/>polygon"]
-        E --> F["claim<br/>I own NFT #1234"]
-        F --> G["owner<br/>0xUserAddress"]
-        G --> G1["nftContract<br/>0xBC4CA0E..."]
+        E --> F["claim<br/>I own NFT"]
+        F --> G["owner<br/>0xUserAddr"]
+        G --> G1["nftContract<br/>0xBC4CA0E"]
         G1 --> G2["tokenId<br/>1234"]
-        G2 --> I["signature<br/>0xabc123..."]
+        G2 --> I["signature<br/>0xabc123"]
         I --> J["signatureType<br/>EIP712"]
-        J --> K["contentHash<br/>QmVC..."]
+        J --> K["contentHash<br/>QmVC"]
     end
     
-    subgraph Storage["💾 存储流程"]
-        U["用户私钥"]
-        U --> G3["生成VC"]
-        G3 --> S1["EIP-712签名"]
-        S1 --> S2["提交到IPFS"]
-        S2 --> S3["计算SHA-256"]
-        S3 --> S4["获取IPFS Hash"]
-        S4 --> S5["提交到目标链"]
+    subgraph Storage["Storage Process"]
+        U["User Private<br/>Key"]
+        U --> G3["Generate VC"]
+        G3 --> S1["EIP-712<br/>Signature"]
+        S1 --> S2["Submit to<br/>IPFS"]
+        S2 --> S3["Calculate<br/>SHA-256"]
+        S3 --> S4["Get IPFS<br/>Hash"]
+        S4 --> S5["Submit to<br/>Target Chain"]
     end
     
     style VC fill:#fff3e0,stroke:#ff6f00,stroke-width:2px
@@ -155,28 +155,28 @@ graph LR
 
 ```mermaid
 graph TD
-    Start["🔒 IPFS Hash<br/>QmVCHash123..."] --> L1["🔍 LAYER 1:<br/>IPFS内容完整性验证"]
+    Start["IPFS Hash<br/>QmVCHash123"] --> L1["LAYER 1<br/>IPFS Integrity<br/>Verification"]
     
-    L1 --> L1_1["从IPFS获取VC文件"]
-    L1_1 --> L1_2["重新计算SHA-256"]
-    L1_2 --> L1_3{"哈希匹配?"}
+    L1 --> L1_1["Retrieve from<br/>IPFS"]
+    L1_1 --> L1_2["Recalculate<br/>SHA-256"]
+    L1_2 --> L1_3{"Hash<br/>Match?"}
     
-    L1_3 -->|✓ PASS| L2["✅ LAYER 2:<br/>用户签名验证"]
-    L1_3 -->|✗ FAIL| Fail1["❌ 返回FALSE<br/>文件被篡改!"]
+    L1_3 -->|PASS| L2["LAYER 2<br/>User Signature<br/>Verification"]
+    L1_3 -->|FAIL| Fail1["Return FALSE<br/>File Tampered"]
     
-    L2 --> L2_1["提取发行者DID"]
-    L2_1 --> L2_2["验证ECDSA签名"]
-    L2_2 --> L2_3{"签名有效?"}
+    L2 --> L2_1["Extract Issuer<br/>DID"]
+    L2_1 --> L2_2["Verify ECDSA<br/>Signature"]
+    L2_2 --> L2_3{"Signature<br/>Valid?"}
     
-    L2_3 -->|✓ VALID| L3["✅ LAYER 3:<br/>链上状态验证"]
-    L2_3 -->|✗ INVALID| Fail2["❌ 返回FALSE<br/>签名伪造!"]
+    L2_3 -->|VALID| L3["LAYER 3<br/>On-chain State<br/>Verification"]
+    L2_3 -->|INVALID| Fail2["Return FALSE<br/>Signature Forged"]
     
-    L3 --> L3_1["查询源链状态"]
-    L3_1 --> L3_2["ownerOf/balanceOf"]
-    L3_2 --> L3_3{"声明与链上<br/>状态一致?"}
+    L3 --> L3_1["Query Source<br/>Chain State"]
+    L3_1 --> L3_2["ownerOf<br/>balanceOf"]
+    L3_2 --> L3_3{"Claim Match<br/>On-chain?"}
     
-    L3_3 -->|✓ MATCH| Pass["✅ 返回TRUE<br/>声明真实"]
-    L3_3 -->|✗ MISMATCH| Fail3["❌ 返回FALSE<br/>用户欺诈!"]
+    L3_3 -->|MATCH| Pass["Return TRUE<br/>Claim Valid"]
+    L3_3 -->|MISMATCH| Fail3["Return FALSE<br/>User Fraud"]
     
     style L1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     style L2 fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
@@ -193,34 +193,34 @@ graph TD
 
 ```mermaid
 graph TB
-    Input["🎯 业务特征输入"] --> D["经济价值<br/>低/中/高"]
-    Input --> R["风险等级<br/>低/中/高"]
-    Input --> C["用户抵押比例<br/>0%-100%+"]
-    Input --> U["时间紧急度"]
-    Input --> V["验证者声誉"]
+    Input["Business<br/>Feature Input"] --> D["Economic<br/>Value"]
+    Input --> R["Risk<br/>Level"]
+    Input --> C["User<br/>Collateral"]
+    Input --> U["Time<br/>Urgency"]
+    Input --> V["Validator<br/>Reputation"]
     
-    D --> Config["⚙️ 动态配置"]
+    D --> Config["Dynamic<br/>Configuration"]
     R --> Config
     C --> Config
     U --> Config
     V --> Config
     
-    Config --> Low["📊 低风险<br/>价值 &lt;$10"]
-    Config --> Med["📊 中风险<br/>价值 $10-$1K"]
-    Config --> High["📊 高风险<br/>价值 >$1K"]
+    Config --> Low["Low Risk<br/>Value Less"]
+    Config --> Med["Medium Risk<br/>Value Medium"]
+    Config --> High["High Risk<br/>Value More"]
     
-    Low --> LowConfig["验证者: 3个<br/>共识: 100%<br/>成本: $0.01<br/>延迟: 1分钟"]
-    Med --> MedConfig["验证者: 5个<br/>共识: 80%<br/>成本: $0.10<br/>延迟: 5分钟"]
-    High --> HighConfig["验证者: 7-10个<br/>共识: 75%<br/>成本: $1.00<br/>延迟: 15分钟"]
+    Low --> LowConfig["Validators: 3<br/>Consensus: 100<br/>Cost: 0.01<br/>Delay: 1 min"]
+    Med --> MedConfig["Validators: 5<br/>Consensus: 80<br/>Cost: 0.10<br/>Delay: 5 min"]
+    High --> HighConfig["Validators: 7-10<br/>Consensus: 75<br/>Cost: 1.00<br/>Delay: 15 min"]
     
-    LowConfig --> Collateral["🎁 用户抵押加速<br/>可选的质押机制"]
+    LowConfig --> Collateral["User Collateral<br/>Optional Stake"]
     MedConfig --> Collateral
     HighConfig --> Collateral
     
-    Collateral --> C0["0% 抵押<br/>基础配置<br/>无变化"]
-    Collateral --> C25["25% 抵押<br/>-1验证者<br/>仍需严格"]
-    Collateral --> C50["50% 抵押<br/>-2验证者<br/>中等"]
-    Collateral --> C100["100%+ 抵押<br/>-3验证者<br/>宽松"]
+    Collateral --> C0["0 Collateral<br/>Base Config<br/>No Change"]
+    Collateral --> C25["25 Collateral<br/>Minus 1 Valid<br/>Still Strict"]
+    Collateral --> C50["50 Collateral<br/>Minus 2 Valid<br/>Medium"]
+    Collateral --> C100["100 Plus Collateral<br/>Minus 3 Valid<br/>Relaxed"]
     
     style Low fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
     style Med fill:#fff9c4,stroke:#f57f17,stroke-width:2px
@@ -234,13 +234,13 @@ graph TB
 
 ```mermaid
 graph LR
-    subgraph UserFraud["👤 用户欺诈检测"]
-        UF1["虚假声明<br/>我拥有NFT #1234"]
-        UF2["链上真实<br/>ownerOf = 0xOther"]
-        UF3["Layer 3查询"]
-        UF4["不匹配 ✗"]
-        UF5["VC被拒"]
-        UF6["用户被标记为<br/>欺诈者"]
+    subgraph UserFraud["User Fraud Detection"]
+        UF1["False Claim:<br/>I own NFT #1234"]
+        UF2["On-chain Reality:<br/>ownerOf = OtherUser"]
+        UF3["Layer 3 Query"]
+        UF4["Mismatch"]
+        UF5["VC Rejected"]
+        UF6["User Marked as<br/>Fraudster"]
         
         UF1 --> UF2
         UF2 --> UF3
@@ -249,13 +249,13 @@ graph LR
         UF5 --> UF6
     end
     
-    subgraph ValidatorFraud["⚖️ 验证者欺诈检测"]
-        VF1["诚实声明<br/>用户真的拥有"]
-        VF2["多个验证者投票"]
-        VF3["恶意验证者<br/>虚假投票"]
-        VF4["BFT共识<br/>多数诚实"]
-        VF5["虚假投票被发现"]
-        VF6["质押被没收<br/>$100K+ 完全损失"]
+    subgraph ValidatorFraud["Validator Fraud Detection"]
+        VF1["Honest Claim:<br/>User Really Owns"]
+        VF2["Multiple Validators<br/>Voting"]
+        VF3["Malicious Voter<br/>False Vote"]
+        VF4["BFT Consensus:<br/>Majority Honest"]
+        VF5["False Vote<br/>Discovered"]
+        VF6["Stake Confiscated:<br/>100K+ Loss"]
         
         VF1 --> VF2
         VF2 --> VF3
@@ -264,13 +264,13 @@ graph LR
         VF5 --> VF6
     end
     
-    UserFraud --> Protection["🛡️ 双重保护机制"]
+    UserFraud --> Protection["Dual Protection<br/>Mechanism"]
     ValidatorFraud --> Protection
     
-    Protection --> P1["经济激励<br/>质押惩罚 > 欺诈收益"]
-    Protection --> P2["公开透明<br/>任何人都能验证"]
-    Protection --> P3["密码学保证<br/>BFT共识防护"]
-    Protection --> P4["完全去中心化<br/>无单点故障"]
+    Protection --> P1["Economic Incentive:<br/>Penalty Loss"]
+    Protection --> P2["Public Transparency:<br/>Anyone Verify"]
+    Protection --> P3["Cryptographic<br/>Guarantee"]
+    Protection --> P4["Fully Decentralized:<br/>No Single Point"]
     
     style UserFraud fill:#ffebee,stroke:#c62828,stroke-width:2px
     style ValidatorFraud fill:#ffebee,stroke:#c62828,stroke-width:2px
@@ -285,13 +285,13 @@ graph LR
 
 ```mermaid
 graph LR
-    A["🖼️ Ethereum<br/>BAYC NFT #1234<br/>用户真实拥有"] -->|VC声明| B["📝 用户生成VC<br/>声明+签名"]
-    B -->|存储| C["💾 IPFS<br/>获取Hash"]
-    C -->|验证请求| D["🔍 验证者验证<br/>3个验证者<br/>100%共识"]
-    D -->|多签证明| E["⚙️ Polygon<br/>游戏合约"]
-    E -->|执行| F["🎮 设置头像<br/>✓ 特殊道具<br/>✓ 独特皮肤<br/>✓ 社区徽章"]
+    A["Ethereum<br/>BAYC NFT 1234<br/>User Owns"] -->|VC Claim| B["Generate VC<br/>Claim + Sign"]
+    B -->|Store| C["IPFS<br/>Get Hash"]
+    C -->|Verify| D["Validators<br/>3 validators<br/>100 consensus"]
+    D -->|Multi-sig| E["Polygon<br/>Game<br/>Contract"]
+    E -->|Execute| F["Avatar Set<br/>Special Items<br/>Unique Skins<br/>Community Badge"]
     
-    D1["低风险操作<br/>验证者: 3个<br/>共识: 100%<br/>时间: 1-2分钟<br/>成本: $0.01"] -.->D
+    D1["Low Risk<br/>Validators: 3<br/>Consensus: 100<br/>Time: 1-2 min<br/>Cost: 0.01"] -.->D
     
     style A fill:#e1f5ff,stroke:#0277bd
     style C fill:#fff3e0,stroke:#ff6f00
@@ -303,18 +303,18 @@ graph LR
 
 ```mermaid
 graph TB
-    subgraph Chains["🔗 多链数据收集"]
-        E["Ethereum<br/>Aave借贷历史<br/>还款记录"]
-        A["Arbitrum<br/>Uniswap交易量<br/>成功率"]
-        O["Optimism<br/>清算事件<br/>损失历史"]
+    subgraph Chains["Multi-chain Data Collect"]
+        E["Ethereum<br/>Aave History<br/>Repay Record"]
+        A["Arbitrum<br/>Uniswap Volume<br/>Success Rate"]
+        O["Optimism<br/>Liquidation<br/>Loss History"]
     end
     
-    Chains -->|聚合| V["📄 多链VC<br/>IPFS存储"]
-    V -->|验证| Val["🔍 验证者验证<br/>5个验证者<br/>80%共识"]
-    Val -->|多签| P["⚙️ Polygon借贷<br/>信用评分合约"]
-    P -->|执行| R["💰 借贷权限<br/>✓ 信用评分: 750<br/>✓ 额度: $100K<br/>✓ 利率优惠<br/>✓ DeFi权限"]
+    Chains -->|Aggregate| V["Multi-chain VC<br/>IPFS Store"]
+    V -->|Verify| Val["Validators<br/>5 validators<br/>80 consensus"]
+    Val -->|Multi-sig| P["Polygon Lending<br/>Score Contract"]
+    P -->|Execute| R["Lending Auth<br/>Score: 750<br/>Limit: 100K<br/>Rate Better<br/>DeFi Rights"]
     
-    D2["中风险操作<br/>验证者: 5个<br/>共识: 80%<br/>时间: 5-10分钟<br/>成本: $0.10"] -.->Val
+    D2["Medium Risk<br/>Validators: 5<br/>Consensus: 80<br/>Time: 5-10 min<br/>Cost: 0.10"] -.->Val
     
     style Chains fill:#e3f2fd,stroke:#1976d2
     style V fill:#fff3e0,stroke:#ff6f00
@@ -326,18 +326,18 @@ graph TB
 
 ```mermaid
 graph TB
-    subgraph DAOs["🏛️ 独立DAO"]
+    subgraph DAOs["Independent DAOs"]
         D1["DAO-A<br/>Ethereum<br/>GOV-A: 1000"]
         D2["DAO-B<br/>Polygon<br/>GOV-B: 500"]
         D3["DAO-C<br/>Arbitrum<br/>GOV-C: 200"]
     end
     
-    DAOs -->|聚合| CV["📄 联盟VC<br/>多DAO代币持有<br/>IPFS存储"]
-    CV -->|验证| HVal["🔍 验证者验证<br/>7-10个验证者<br/>85%共识"]
-    HVal -->|多签| GC["⚙️ 联盟投票合约<br/>投票权计算"]
-    GC -->|执行| Gov["🗳️ 治理权力<br/>投票权: 800票<br/>✓ 投票提案<br/>✓ 创建提案<br/>✓ 执行决议"]
+    DAOs -->|Aggregate| CV["Coalition VC<br/>Multi-DAO Token<br/>IPFS Store"]
+    CV -->|Verify| HVal["Validators<br/>7-10 validators<br/>85 consensus"]
+    HVal -->|Multi-sig| GC["Coalition Vote<br/>Contract"]
+    GC -->|Execute| Gov["Governance<br/>Vote Power: 800<br/>Vote Proposal<br/>Create Proposal<br/>Execute Decision"]
     
-    D3["高风险操作<br/>验证者: 7-10个<br/>共识: 85%<br/>时间: 10-20分钟<br/>成本: $1.00"] -.->HVal
+    D3["High Risk<br/>Validators: 7-10<br/>Consensus: 85<br/>Time: 10-20 min<br/>Cost: 1.00"] -.->HVal
     
     style DAOs fill:#e3f2fd,stroke:#1976d2
     style CV fill:#fff3e0,stroke:#ff6f00
@@ -349,22 +349,22 @@ graph TB
 
 ```mermaid
 graph LR
-    Table["场景对比表"]
+    Table["Scenario Comparison"]
     
-    A1["NFT头像"] --> A2["低风险"]
-    A2 --> A3["3个验证者"]
-    A3 --> A4["100%"]
-    A4 --> A5["1-2分钟"]
+    A1["NFT Avatar"] --> A2["Low Risk"]
+    A2 --> A3["3 Validators"]
+    A3 --> A4["100 Percent"]
+    A4 --> A5["1-2 min"]
     
-    B1["信用评分"] --> B2["中风险"]
-    B2 --> B3["5个验证者"]
-    B3 --> B4["80%"]
-    B4 --> B5["5-10分钟"]
+    B1["Credit Score"] --> B2["Medium Risk"]
+    B2 --> B3["5 Validators"]
+    B3 --> B4["80 Percent"]
+    B4 --> B5["5-10 min"]
     
-    C1["DAO治理"] --> C2["高风险"]
-    C2 --> C3["7-10验证者"]
-    C3 --> C4["85%"]
-    C4 --> C5["10-20分钟"]
+    C1["DAO Governance"] --> C2["High Risk"]
+    C2 --> C3["7-10 Validators"]
+    C3 --> C4["85 Percent"]
+    C4 --> C5["10-20 min"]
     
     style A2 fill:#c8e6c9
     style B2 fill:#fff9c4
@@ -379,17 +379,17 @@ graph LR
 
 ```mermaid
 graph LR
-    subgraph Traditional["传统跨链方案"]
-        B["🌉 跨链桥接<br/>优点：成熟<br/>缺点：风险高"]
-        O["🔮 预言机<br/>优点：灵活<br/>缺点：单点故障"]
-        LC["🔆 轻客户端<br/>优点：安全<br/>缺点：复杂庞重"]
+    subgraph Traditional["Traditional Solutions"]
+        B["Bridge<br/>Pros: Mature<br/>Cons: Risk High"]
+        O["Oracle<br/>Pros: Flexible<br/>Cons: Single Point"]
+        LC["Light Client<br/>Pros: Secure<br/>Cons: Complex Heavy"]
     end
     
-    subgraph Ours["✨ 本专利方案"]
-        VC["🏛️ W3C VC框架<br/>+<br/>IPFS内容寻址<br/>+<br/>多维验证强度"]
+    subgraph Ours["This Patent"]
+        VC["W3C VC Framework<br/>IPFS Content<br/>Multi-dim Verify"]
     end
     
-    Comparison["⚔️ 方案对比"] -.->Traditional
+    Comparison["Solution vs"] -.->Traditional
     Comparison -.->Ours
     
     style B fill:#ffebee,stroke:#c62828
@@ -402,11 +402,11 @@ graph LR
 
 ```mermaid
 graph TB
-    subgraph Features["核心特性对比"]
-        T1["❌ 跨链桥接<br/>安全性: 低<br/>验证速度: 快<br/>成本: 高<br/>风险: 智能合约漏洞"]
-        T2["⚠️ 预言机<br/>安全性: 中<br/>验证速度: 中<br/>成本: 中<br/>风险: 预言机作恶"]
-        T3["🔒 轻客户端<br/>安全性: 高<br/>验证速度: 慢<br/>成本: 极高<br/>风险: 验证开销"]
-        T4["✅ 本方案<br/>安全性: 最高<br/>验证速度: 快<br/>成本: 低<br/>风险: 经济激励制约"]
+    subgraph Features["Core Feature Comparison"]
+        T1["Traditional Bridge<br/>Security: Low<br/>Speed: Fast<br/>Cost: High<br/>Risk: Smart Contract"]
+        T2["Oracle Network<br/>Security: Medium<br/>Speed: Medium<br/>Cost: Medium<br/>Risk: Single Point"]
+        T3["Light Client<br/>Security: High<br/>Speed: Slow<br/>Cost: Extreme<br/>Risk: Verification"]
+        T4["This Patent<br/>Security: Highest<br/>Speed: Fast<br/>Cost: Low<br/>Risk: Economic"]
     end
     
     style T1 fill:#ffcdd2,stroke:#c62828
@@ -419,25 +419,25 @@ graph TB
 
 ```mermaid
 graph LR
-    subgraph Bridges["跨链桥<br/>问题案例"]
-        B1["Poly Bridge<br/>$611M损失<br/>2021年8月"]
-        B2["Ronin Bridge<br/>$625M损失<br/>2022年3月"]
-        B3["Nomad Bridge<br/>$190M损失<br/>2022年8月"]
+    subgraph Bridges["Bridge Issues"]
+        B1["Poly Bridge<br/>611M Loss<br/>Aug 2021"]
+        B2["Ronin Bridge<br/>625M Loss<br/>Mar 2022"]
+        B3["Nomad Bridge<br/>190M Loss<br/>Aug 2022"]
     end
     
-    subgraph Oracles["预言机<br/>问题案例"]
-        O1["Chainlink单点<br/>服务中断"]
-        O2["预言机操纵<br/>闪电贷攻击"]
-        O3["数据延迟<br/>市场价格滑点"]
+    subgraph Oracles["Oracle Issues"]
+        O1["Chainlink<br/>Single Point<br/>Downtime"]
+        O2["Oracle Attack<br/>Flash Loan<br/>Manipulation"]
+        O3["Data Delay<br/>Price Slippage<br/>Latency"]
     end
     
-    subgraph Ours["本方案<br/>防护机制"]
-        S1["💰 经济激励<br/>验证者抵押<br/>欺诈者罚没<br/>诚实者奖励"]
-        S2["🔐 加密保证<br/>EIP-712签名<br/>SHA-256哈希<br/>不可伪造"]
-        S3["🏛️ 分散共识<br/>多维验证<br/>BFT机制<br/>无单点故障"]
+    subgraph Ours["Patent Solution"]
+        S1["Economic<br/>Incentive:<br/>Validator<br/>Collateral"]
+        S2["Cryptographic<br/>Guarantee:<br/>EIP-712 Sig<br/>Unforgeable"]
+        S3["Consensus:<br/>BFT Multi-dim<br/>No Single<br/>Point"]
     end
     
-    Bridges --> Weakness["❌ 单点故障"]
+    Bridges --> Weakness["Single Point<br/>of Failure"]
     Oracles --> Weakness
     Weakness --> Ours
     
@@ -456,20 +456,20 @@ graph LR
 
 ```mermaid
 graph TB
-    subgraph Capability["功能对比矩阵"]
-        H1["🌉 跨链桥: 快速+昂贵"]
-        H2["🔮 预言机: 灵活+有限"]
-        H3["🔆 轻客户端: 安全+笨重"]
-        H4["✅ 本方案: 快速+安全+灵活+经济"]
+    subgraph Capability["Feature Capability Matrix"]
+        H1["Bridge:<br/>Fast + Expensive"]
+        H2["Oracle:<br/>Flexible + Limited"]
+        H3["Light Client:<br/>Secure + Heavy"]
+        H4["This Patent:<br/>Fast + Safe + Flexible"]
     end
     
-    H1 --> Props1["资产转移: ✅<br/>任意数据: ❌<br/>实时性: ✅<br/>安全性: ❌<br/>可扩展: ❌"]
+    H1 --> Props1["Asset Transfer: Yes<br/>Any Data: No<br/>Real-time: Yes<br/>Security: No<br/>Scalable: No"]
     
-    H2 --> Props2["资产转移: ❌<br/>任意数据: ✅<br/>实时性: ❌<br/>安全性: ⚠️<br/>可扩展: ✅"]
+    H2 --> Props2["Asset Transfer: No<br/>Any Data: Yes<br/>Real-time: No<br/>Security: Medium<br/>Scalable: Yes"]
     
-    H3 --> Props3["资产转移: ⚠️<br/>任意数据: ✅<br/>实时性: ❌<br/>安全性: ✅<br/>可扩展: ❌"]
+    H3 --> Props3["Asset Transfer: Medium<br/>Any Data: Yes<br/>Real-time: No<br/>Security: Yes<br/>Scalable: No"]
     
-    H4 --> Props4["资产转移: ✅<br/>任意数据: ✅<br/>实时性: ✅<br/>安全性: ✅<br/>可扩展: ✅"]
+    H4 --> Props4["Asset Transfer: Yes<br/>Any Data: Yes<br/>Real-time: Yes<br/>Security: Yes<br/>Scalable: Yes"]
     
     style H1 fill:#ffcdd2,stroke:#c62828
     style H2 fill:#ffe0b2,stroke:#e65100
@@ -486,12 +486,12 @@ graph TB
 
 ```mermaid
 graph TB
-    X["成本与安全的权衡曲线"]
+    X["Cost vs Security Tradeoff"]
     
-    Low["低成本<br/>低安全<br/>跨链桥-不可用"]
-    Mid1["中等成本<br/>中安全<br/>预言机-有限"]
-    High["高成本<br/>高安全<br/>轻客户端-低效"]
-    Opt["✨ 最优点<br/>低成本<br/>高安全<br/>本方案<br/>✅ 经济激励<br/>✅ 多维验证<br/>✅ 灵活定制"]
+    Low["Low Cost<br/>Low Security<br/>Bridge Issue"]
+    Mid1["Medium Cost<br/>Medium Security<br/>Oracle Limited"]
+    High["High Cost<br/>High Security<br/>Client Heavy"]
+    Opt["Optimal Point<br/>Low Cost<br/>High Security<br/>This Patent<br/>Economic Incentive<br/>Multi-dim Verify<br/>Flexible Config"]
     
     X --> Low
     X --> Mid1
@@ -504,18 +504,18 @@ graph TB
     style High fill:#f3e5f5,stroke:#7b1fa2
 ```
 
-### 对比维度6：综合评分雷达图
+### 对比维度6：综合评分对比
 
 ```mermaid
 graph LR
-    subgraph Metrics["综合评分对比"]
-        B["🌉 Bridge<br/>安全: 2/10<br/>速度: 9/10<br/>成本: 3/10<br/>扩展: 4/10<br/>灵活: 3/10<br/>均分: 4.2/10"]
+    subgraph Metrics["Score Comparison"]
+        B["Bridge<br/>Security: 2<br/>Speed: 9<br/>Cost: 3<br/>Scale: 4<br/>Flex: 3<br/>Avg: 4.2"]
         
-        O["🔮 Oracle<br/>安全: 5/10<br/>速度: 6/10<br/>成本: 5/10<br/>扩展: 7/10<br/>灵活: 8/10<br/>均分: 6.2/10"]
+        O["Oracle<br/>Security: 5<br/>Speed: 6<br/>Cost: 5<br/>Scale: 7<br/>Flex: 8<br/>Avg: 6.2"]
         
-        LC["🔆 Light Client<br/>安全: 8/10<br/>速度: 3/10<br/>成本: 2/10<br/>扩展: 2/10<br/>灵活: 6/10<br/>均分: 4.2/10"]
+        LC["Light<br/>Security: 8<br/>Speed: 3<br/>Cost: 2<br/>Scale: 2<br/>Flex: 6<br/>Avg: 4.2"]
         
-        P["✅ Patent<br/>安全: 9/10<br/>速度: 8/10<br/>成本: 8/10<br/>扩展: 9/10<br/>灵活: 9/10<br/>均分: 8.6/10"]
+        P["Patent<br/>Security: 9<br/>Speed: 8<br/>Cost: 8<br/>Scale: 9<br/>Flex: 9<br/>Avg: 8.6"]
     end
     
     style B fill:#ffcdd2,stroke:#c62828
@@ -528,44 +528,44 @@ graph LR
 
 ```mermaid
 graph TB
-    subgraph Scenarios["应用场景支持情况"]
-        S1["跨链资产转移"]
-        S2["数据交互验证"]
-        S3["身份认证"]
-        S4["信用评分"]
-        S5["治理投票"]
-        S6["权利证明"]
+    subgraph Scenarios["Application Support"]
+        S1["Asset Transfer"]
+        S2["Data Verify"]
+        S3["Identity Auth"]
+        S4["Credit Score"]
+        S5["Governance"]
+        S6["Rights Proof"]
     end
     
-    S1 -->|Bridge| B["✅"]
-    S1 -->|Oracle| O["❌"]
-    S1 -->|LC| LC["⚠️"]
-    S1 -->|Patent| P["✅✅"]
+    S1 -->|Bridge| B["Yes"]
+    S1 -->|Oracle| O["No"]
+    S1 -->|LC| LC["Medium"]
+    S1 -->|Patent| P["Yes"]
     
-    S2 -->|Bridge| B2["❌"]
-    S2 -->|Oracle| O2["✅"]
-    S2 -->|LC| LC2["✅"]
-    S2 -->|Patent| P2["✅✅"]
+    S2 -->|Bridge| B2["No"]
+    S2 -->|Oracle| O2["Yes"]
+    S2 -->|LC| LC2["Yes"]
+    S2 -->|Patent| P2["Yes"]
     
-    S3 -->|Bridge| B3["❌"]
-    S3 -->|Oracle| O3["⚠️"]
-    S3 -->|LC| LC3["✅"]
-    S3 -->|Patent| P3["✅✅"]
+    S3 -->|Bridge| B3["No"]
+    S3 -->|Oracle| O3["Medium"]
+    S3 -->|LC| LC3["Yes"]
+    S3 -->|Patent| P3["Yes"]
     
-    S4 -->|Bridge| B4["❌"]
-    S4 -->|Oracle| O4["✅"]
-    S4 -->|LC| LC4["⚠️"]
-    S4 -->|Patent| P4["✅✅"]
+    S4 -->|Bridge| B4["No"]
+    S4 -->|Oracle| O4["Yes"]
+    S4 -->|LC| LC4["Medium"]
+    S4 -->|Patent| P4["Yes"]
     
-    S5 -->|Bridge| B5["❌"]
-    S5 -->|Oracle| O5["⚠️"]
-    S5 -->|LC| LC5["✅"]
-    S5 -->|Patent| P5["✅✅"]
+    S5 -->|Bridge| B5["No"]
+    S5 -->|Oracle| O5["Medium"]
+    S5 -->|LC| LC5["Yes"]
+    S5 -->|Patent| P5["Yes"]
     
-    S6 -->|Bridge| B6["❌"]
-    S6 -->|Oracle| O6["⚠️"]
-    S6 -->|LC| LC6["✅"]
-    S6 -->|Patent| P6["✅✅"]
+    S6 -->|Bridge| B6["No"]
+    S6 -->|Oracle| O6["Medium"]
+    S6 -->|LC| LC6["Yes"]
+    S6 -->|Patent| P6["Yes"]
     
     style B fill:#ffcdd2
     style O fill:#ffe0b2
