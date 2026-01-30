@@ -309,7 +309,7 @@ function verifyHeaderAndUpdateState(
 - 用户使用私钥对VC凭证进行EIP-712签名：sig = Sign(VC, userPrivateKey)
 - **关键：用户签名的是VC凭证（对状态的声明），而非原始链上数据**
 - 签名后的VC凭证（包含凭证体+用户签名）被提交至IPFS网络存储
-- IPFS返回该VC凭证的内容哈希（ipfsHash）
+- 由于IPFS采用内容寻址机制，VC凭证内容确定后，其内容哈希（ipfsHash）即可确定性计算得到
 - **此阶段仅为用户的自我声明和签名，不需要验证者验证**
 
 **步骤3：跨链VC使用与验证者投票**
