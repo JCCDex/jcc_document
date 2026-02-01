@@ -1,0 +1,160 @@
+```javascript
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://www.w3.org/2018/credentials/v1",
+    {
+      "version": "https://jdid.cn/did/v1" // 自定义SWTC社区的DID版本号，明确上下文
+      "credentials": "https://jdid.cn/did/v1#credentials" // 自定义字段 用于拓展VC凭证字段
+    }
+  ],
+  "id": "did:swtc:{swtc_AWalletAddress}", //DID规范 DID:DID方法:特定标识符(用井通链地址)，固定表达
+  "created": "2025-10-13T03:49:00.299Z", // DID文档创建时间
+  "updated": "2025-12-30T07:41:10.329Z", // DID文档最后更新时间
+  "version": "1.0.0", // DID文档版本号，方便相关SDK基于版本号进行业务逻辑封装
+  "authentication": [ // 认证方法，通常是公钥，用于身份验证
+    "did:swtc:{swtc_AWalletAddress}#key-1" // 此处是一个数组，规范认为此处可以定义多个不同类型公钥，通过key-1...key-n这种机制来区分，为DID身份的用户以后持有多个密钥，登陆不同系统平台做支持。我理解在不同的平台创建不同的虚拟身份，可以单独构建一个DID Document，都放在一起的话，很容易被各种应用聚合进行画像，分开来建立文档，那么不同应用是没办法推测这些文档之间的关系的 
+  ],
+  "assertionMethod": [
+    "did:swtc:{swtc_AWalletAddress}#key-1" // 断言方法，通常是公钥，用于签名和验证
+  ],
+  "verificationMethod": [ // 公钥信息，用于验证签名
+    {
+      "id": "did:swtc:{swtc_AWalletAddress}#key-1",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:swtc:{swtc_AWalletAddress}", // 控制该公钥的DID
+      "publicKeyBase58": "22EdfzGVnqzPCcdxQ87FifFEh8xskmvUHrjpqMgyFoE3E" // Base58编码的公钥
+    }
+  ],
+  "service": [ // 服务端点，提供与DID相关的服务信息
+    {
+      "id": "did:swtc:{swtc_AWalletAddress}#ipfs-storage", // IPFS服务标识符
+      "type": "IpfsStorage",
+      "serviceEndpoint": {
+        "ipns": "ipns://k2k4r8ntjlp1cmgped39eq1fi4yze6fsr8og1kcmjhamgs3ubwkfldei", // 这是通过DID公钥推算出的固定IPNS入口
+        "previousCid": "bafybeiaezzrmlmbhtjctlrlgva5eyeghrshp2ofjskmsx2gdvwsfh7n3aa" // 每次document***变更***后都是一个新的CID，此处记录上一个CID，如果是原始文件，则表达为空字符串即可
+      }
+    },
+    {
+      "id": "did:swtc:{swtc_AWalletAddress}#profile", // 个人资料服务标识符
+      "type": "Profile",
+      "serviceEndpoint": {
+        "nickname": "敲门", // 用户昵称
+        // 绑定的头像NFT定义，如果没有绑定头像，那么此处是空字符串
+        // SWTC上的NFT地址唯一性: NFT名称+issuer+token Id 来唯一标识一个NFT
+        "preferredAvatar": "did:swtc:{swtc_AWalletAddress}#nft-{swtc_NFT Name}-{NFT issuer}-{NFT token Id}" 
+      }
+    },
+    // service中嵌入VC的写法 通常用来解决
+    // 1. 防止endpoint假冒，用于通信验证
+    // 2. 智能合约地址和代码hash，防止被钓鱼
+  ],
+  // 独立的 VC 列表（自定义扩展）
+  "credentials": [
+    // NFT 自持所有权 VC 示例
+    {
+      // VC id 
+      "id": "did:swtc:{swtc_AWalletAddress}#nft-{swtc_NFT Name}-{NFT issuer}-{NFT token Id}",
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        {
+          "version": "https://jdid.cn/did/v1",
+          "chainId": "https://jdid.cn/did/v1#chainId",
+          "tokenName": "https://jdid.cn/did/v1#tokenName",
+          "tokenId": "https://jdid.cn/did/v1#tokenId",
+          "owner": "https://jdid.cn/did/v1#owner",
+          "nftIssuer": "https://jdid.cn/did/v1#nftIssuer",
+          "standard": "https://jdid.cn/did/v1#standard",
+          "status": "https://jdid.cn/did/v1#status"
+        }
+      ],
+      "type": [
+        "VerifiableCredential",
+        "NFTOwnership"
+      ],
+      "credentialSubject": {
+        "id": "did:swtc:{swtc_AWalletAddress}", // NFT 所有者DID
+        "chainId": 315, // SWTC链ID
+        "standard": "jingtumNFT",
+        "tokenName": "{NFT Name}",
+        "nftIssuer": "{NFT issuer}",  // 发行者地址
+        "tokenId": "{NFT token Id}",
+        "owner": "{swtc_AWalletAddress}",
+        "status": "Active"
+      },
+      "issuanceDate": "2025-11-13T06:11:40.441Z",
+      "expirationDate": "2026-11-13T06:11:40.441Z", // VC过期时间，验证时需检查是否过期
+      "issuer": "did:swtc:{swtc_AWalletAddress}",
+      "proof": {
+        "type": "EcdsaSecp256k1Signature2019",
+        "created": "2025-11-13T06:11:40Z",
+        "verificationMethod": "did:swtc:{swtc_AWalletAddress}#key-1",
+        "proofPurpose": "assertionMethod",
+        "jws": "eyJhbGciOiJFUzI1NksiLCJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdfQ..MEUCIGigjBbGOu63-dMz6v8Q5lfWCvjt_BlllJzsQV-fEvkqAiEAwvjBn8vcBh2VQsrjDVH9EEKxTBgjLu2oQZTQkKLEcs0"
+      },
+    },
+    // 授权别人使用NFT VC 示例
+    // 这个VC可以单独存放在被授权人的DID Document中，也可以存放在NFT所有者的DID Document中
+    {
+      // VC id 
+      "id": "did:swtc:{swtc_AWalletAddress}#nft-{swtc_NFT Name}-{NFT issuer}-{NFT token Id}",
+      "@context": [
+        "https://www.w3.org/2018/credentials/v1",
+        {
+          "version": "https://jdid.cn/did/v1",
+          "NFTUsageAuthorization": "https://jdid.cn/vc/v1#NFTUsageAuthorization",
+          "grantee": "https://jdid.cn/vc/v1#grantee",
+          "usageRights": "https://jdid.cn/vc/v1#usageRights",
+          "restrictions": "https://jdid.cn/vc/v1#restrictions",
+          "chainId": "https://jdid.cn/did/v1#chainId",
+          "tokenName": "https://jdid.cn/did/v1#tokenName",
+          "tokenId": "https://jdid.cn/did/v1#tokenId",
+          "owner": "https://jdid.cn/did/v1#owner",
+          "nftIssuer": "https://jdid.cn/did/v1#nftIssuer",
+          "standard": "https://jdid.cn/did/v1#standard",
+          "status": "https://jdid.cn/did/v1#status"
+        }
+      ],
+      "type": [
+        "VerifiableCredential",
+        "NFTUsageAuthorization"
+      ],
+      "credentialSubject": {
+        "id": "did:swtc:0xGranteeAddress", // 被授权人DID
+        "owner": "did:swtc:{swtc_AWalletAddress}", // NFT 所有者DID
+        "chainId": 315, // SWTC链ID
+        "standard": "jingtumNFT",
+        "tokenName": "{NFT Name}",
+        "nftIssuer": "{NFT issuer}",  // 发行者地址
+        "tokenId": "{NFT token Id}",
+        "usageRights": [
+          "avatar", // 头像使用权
+          "non-commercial-display" // 非商业展示权, 这些使用权可以自定义扩展
+        ],
+        "restrictions": {
+          "commercial": false, // 是否允许商业使用
+          "derivative": false, // 是否允许衍生作品
+          "sublicense": false, // 是否允许再授权
+          "territories": [ // 使用地域限制
+            "global"
+          ],
+          "platforms": [ // 使用平台限制  这些限制可以自定义扩展 在授权头像场景下，这个内容可以不用
+            "*"
+          ]
+        },
+        // 可撤销性定义: 对于授权业务比较复杂的场景，尤其是商业场景，需要考虑授权的可撤销性和可继承性，这个需要在VDR合约中进行设计和实现
+      },
+      "issuanceDate": "2025-11-13T06:11:40.441Z",
+      "expirationDate": "2026-11-13T06:11:40.441Z", // 授权过期时间，过期后被授权方需重新申请授权
+      "issuer": "did:swtc:{swtc_AWalletAddress}",
+      "proof": {
+        "type": "EcdsaSecp256k1Signature2019",
+        "created": "2025-11-13T06:11:40Z",
+        "verificationMethod": "did:swtc:{swtc_AWalletAddress}#key-1",
+        "proofPurpose": "assertionMethod",
+        "jws": "eyJhbGciOiJFUzI1NksiLCJiNjQiOmZhbHNlLCJjcml0IjpbImI2NCJdfQ..MEUCIGigjBbGOu63-dMz6v8Q5lfWCvjt_BlllJzsQV-fEvkqAiEAwvjBn8vcBh2VQsrjDVH9EEKxTBgjLu2oQZTQkKLEcs0"
+      },
+    }
+  ]
+}
+```
