@@ -1,6 +1,6 @@
 # 免Gas体验：让用户"白嫖"上链的艺术
 
-!Gasless技术
+![Gasless技术](/asset/14_blog_bg.png)
 
 ## 开篇：一个让无数新用户劝退的灵魂拷问
 
