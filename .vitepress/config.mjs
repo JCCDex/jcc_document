@@ -687,7 +687,8 @@ function jccBlog() {
     { text: 'EIP-1271合约签名的黑魔法', link: '/11_blog'},
     { text: 'EIP7702 和 EIP-4337：账户抽象的"大一统"革命', link: '/12_blog'},
     { text: 'MEV的生死劫', link: '/13_blog'},
-    { text: '免Gas体验：让用户"白嫖"上链的艺术', link: '/14_blog'},
+    { text: '免Gas体验：让用户“白嫖”上链的艺术', link: '/14_blog'},
+    { text: 'AI编程工具安装与模型接入实战 —— 从零到上手', link: '/15_blog'},
   ]
 }
 
