@@ -2,7 +2,7 @@
 
 ![AI编程工具](/asset/15_blog_bg.png)
 
-2026 年的 AI 编程工具已经从"要不要用"变成了"用哪个、怎么配"的问题。但很多开发者的第一步就卡住了 —— 工具装不上、模型接不进来、API Key 不知道往哪填。
+2026 年的 AI 编程工具已经从"要不要用"变成了"用哪个、怎么配"的问题。但很多开发者的第一步就卡住了 —— 工具装不上、模型接不进来、API Key 不知道往哪填。甚至面对Anthropic的对华立场，够你折腾的。
 
 本文解决的就是这个：**手把手把主流工具装上，把模型配通**。照着做就能跑。
 
@@ -23,7 +23,7 @@
 
 ## 一、Claude Code —— Anthropic 的终端王牌
 
-Claude Code 是目前最火的终端 AI 编程助手，擅长大型代码库重构、调试和多文件编辑。
+Claude Code 是目前最火的终端 AI 编程助手，擅长大型代码库重构、调试和多文件编辑。他有两个产品形态，一个是CLI，一个是GUI，CLI发的比较早，用户比较多，使用效率比较高，GUI发的比较晚，各种注册登录校验限制不说，甚至对于接中国模型还有限制，太麻烦了，我们只介绍CLI，GUI有兴趣可以自行探索。
 
 ### 1.1 安装
 
@@ -37,24 +37,9 @@ npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
-**首次使用需要登录**：
-
-```bash
-claude login
-```
-
-浏览器会弹出 Anthropic 授权页面，完成后终端自动绑定。
-
-如果你直接使用 API Key（跳过登录）：
-
-```bash
-export ANTHROPIC_API_KEY="sk-ant-xxx"
-claude
-```
-
 ### 1.2 模型选择
 
-Claude Code 默认使用 Claude Opus 4.7，可在设置中切换：
+Claude Code 默认使用 Claude Opus 4.7，不过你使用海外模型工作，记得要科学上网，可在设置中切换：
 
 ```bash
 # 查看当前模型
@@ -77,42 +62,35 @@ claude config set model sonnet
 
 ### 1.3 接入第三方模型
 
-Claude Code 支持任何兼容 OpenAI Chat Completions 协议的 API。配置方式：
+Claude Code 支持任何兼容 OpenAI Chat Completions 协议的 API。我们就用最新的DeepSeek v4 pro举例，配置方式：
 
 ```bash
 # 方式一：环境变量
-export OPENAI_API_KEY="sk-your-key"
-export OPENAI_BASE_URL="https://api.deepseek.com"  # 以 DeepSeek 为例
-export CLAUDE_CODE_MODEL="openai/deepseek-chat"     # 指定模型
-claude --provider openai
+export ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic
+export ANTHROPIC_AUTH_TOKEN=sk-.....
+export ANTHROPIC_MODEL=deepseek-v4-pro[1m]
+export ANTHROPIC_DEFAULT_OPUS_MODEL=deepseek-v4-pro[1m]
+export ANTHROPIC_DEFAULT_SONNET_MODEL=deepseek-v4-pro[1m]
+export ANTHROPIC_DEFAULT_HAIKU_MODEL=deepseek-v4-flash
+export CLAUDE_CODE_SUBAGENT_MODEL=deepseek-v4-flash
+export CLAUDE_CODE_EFFORT_LEVEL=max
 
 # 方式二：配置文件 ~/.claude/settings.json
 {
-  "apiKeyHelper": "echo $OPENAI_API_KEY",
-  "customApiUrl": "https://api.deepseek.com/v1",
-  "model": "openai/deepseek-chat"
+  "apiBaseUrl": "https://api.deepseek.com/anthropic",
+  "apiKey": "sk-.....",
+  "model": "deepseek-v4-pro[1m]",
+  "defaultOpusModel": "deepseek-v4-pro[1m]",
+  "defaultSonnetModel": "deepseek-v4-pro[1m]",
+  "defaultHaikuModel": "deepseek-v4-flash",
+  "subagentModel": "deepseek-v4-flash",
+  "effortLevel": "max"
 }
 ```
 
-**常用第三方 API 地址速查**：
+其他大模型可以同样参考官网的配置说明添加, 不一一赘述了。
 
-```bash
-# DeepSeek
-OPENAI_BASE_URL="https://api.deepseek.com"
-OPENAI_API_KEY="sk-xxx"
-
-# 智谱 (GLM)
-OPENAI_BASE_URL="https://open.bigmodel.cn/api/paas/v4"
-OPENAI_API_KEY="xxx.xxx"
-
-# MiniMax
-OPENAI_BASE_URL="https://api.minimax.chat/v1"
-OPENAI_API_KEY="xxx"
-
-# Ollama 本地
-OPENAI_BASE_URL="http://localhost:11434/v1"
-OPENAI_API_KEY="ollama"  # 任意值即可
-```
+![Cluade CLI 配置 Deepseek](/asset/15_blog_claude_deepseek.png)
 
 ---
 
@@ -136,10 +114,12 @@ codex --version
 ### 2.2 配置模型
 
 ```bash
-# 初始化配置
+# 初始化配置，这一步需要注册账号，要科学上网才行，邮箱最好用Gmail这些国外的邮箱
+# 注册结束后，会提示你是否信任当前目录，开始扫描，嗯，最好在你的项目目录里面，不要在自己用户根目录，注意安全和隐私
 codex init
 
-# 直接设置 API Key
+
+# 如果你购买了OpenAI的大模型API，直接设置 API Key
 export OPENAI_API_KEY="sk-xxx"
 codex
 ```
