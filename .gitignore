@@ -3,4 +3,5 @@
 .vitepress/.temp
 node_modules
 .vscode
+.DS_Store
 deploy.sh
