@@ -103,6 +103,16 @@ ethereum.on("swtcAccountsChanged", (accounts) => {
 });
 ```
 
+### 获取 SWTC 账号 NFT 列表
+
+```js
+// params: [address, filters?]，filters 为 [{ name, issuer }]；省略或 [] 返回全部
+const swtcNfts = await ethereum.request({
+  method: "swtc_requestNfts",
+  params: [accounts[0], [{ name: "NFT Name", issuer: "jxxxxxxx" }]]
+});
+```
+
 ## EVM 链
 
 ### 连接钱包
@@ -257,6 +267,16 @@ ethereum.on("connect", (connectInfo) => {
 // 监听断开连接
 ethereum.on("disconnect", (error) => {
   console.log("EVM disconnected: ", error);
+});
+```
+
+### 获取 EVM 账号 NFT 列表
+
+```js
+// params: [address, filters?]，filters 为 [{ chainId, contract? }]；省略或 [] 返回全部
+const accountNfts = await ethereum.request({
+  method: "eth_requestNfts",
+  params: ['0x...', [{ chainId: "0x1", contract: "0x....." }]]
 });
 ```
 
