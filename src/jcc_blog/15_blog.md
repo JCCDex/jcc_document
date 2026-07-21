@@ -1,5 +1,7 @@
 # 从提案到注册：井通链 `did:swtc` 正式写入 W3C DID 方法注册表
 
+![did:swtc](/asset/15_blog_bg.png)
+
 ## 开篇：你的链上地址，也可以是全球通用的数字身份
 
 你有没有想过，钱包地址能不能不只是"收钱的字符串"，而是真正成为**可验证、可解析、可互操作**的数字身份？
@@ -13,8 +15,6 @@ W3C 的 DID（Decentralized Identifier，去中心化标识符）标准，就是
 ---
 
 ## 一、DID 是什么？为什么值得做标准注册？
-
-
 
 ### 用人话说：一套"全球通用的身份 URL"
 
@@ -154,20 +154,7 @@ const didSwtcArchitecture = {
 
 整体流程可以用下面这张图理解：
 
-```mermaid
-flowchart LR
-    A[生成 secp256k1 密钥对] --> B[派生 SWTC 地址]
-    B --> C["DID: did:swtc:{address}"]
-    C --> D[构建 DID Document]
-    D --> E[上传到 IPFS MFS]
-    E --> F[IPNS 发布更新]
-    F --> G[任意方通过 DID 解析文档]
-    G --> H[验证 VC / 读取 Profile 等]
-```
-
-
-
-
+<img src="../asset/15_blog_workflow1.png" alt="DID:swtc workflow" width="400" />
 
 ### DID Document 长什么样？
 
@@ -360,36 +347,11 @@ const jdidApp = {
 
 对于开发者来说，井证 App 相当于一个"DID 身份 + VC 持有者"，与 `@jccdex/did` SDK 和 IPFS 服务形成完整闭环：
 
-```mermaid
-flowchart TB
-    subgraph 用户层
-        A[井证 App]
-    end
-    subgraph 协议层
-        B["@jccdex/did SDK"]
-        C["W3C did:swtc 规范"]
-    end
-    subgraph 存储层
-        D[IPFS MFS + IPNS]
-    end
-    subgraph 标准层
-        E[W3C DID 注册表]
-    end
-    A --> B
-    B --> C
-    B --> D
-    C --> E
-```
-
-
+<img src="../asset/15_blog_workflow2.png" alt="DID:swtc user workflow" />
 
 ---
 
-
-
 ## 七、did:swtc 可以做什么？几个落地场景
-
-
 
 ### 场景一：NFT 所有权可验证凭证
 
